@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_approval" model="ir.ui.view">
+        <field name="name">product.template.form.approval</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_submit_for_approval" type="object"
+                            string="Submit for Approval"
+                            class="oe_highlight"
+                            invisible="state not in ('draft', 'not_approved')"/>
+                    <button name="action_approve" type="object"
+                            string="Approve"
+                            class="oe_highlight"
+                            invisible="state not in ('under_approval', 'not_approved')"
+                            groups="product_approvel_management_app.group_product_manager"/>
+                    <button name="action_open_reject_wizard" type="object"
+                            string="Reject"
+                            invisible="state != 'under_approval'"
+                            groups="product_approvel_management_app.group_product_manager"/>
+                    <button name="action_reset_to_draft" type="object"
+                            string="Reset to Draft"
+                            invisible="state == 'draft'"
+                            groups="product_approvel_management_app.group_product_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,under_approval,approved"/>
+                </header>
+            </xpath>
+            <xpath expr="//sheet" position="after">
+                <field name="approved_by" invisible="1"/>
+                <field name="approved_date" invisible="1"/>
+                <field name="rejected_by" invisible="1"/>
+                <field name="rejected_date" invisible="1"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <div class="alert alert-danger" role="alert"
+                     invisible="state != 'not_approved'">
+                    <strong>Reject Reason:</strong> <field name="reject_reason" readonly="1" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_search_view_approval" model="ir.ui.view">
+        <field name="name">product.template.search.approval</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <filter string="Draft" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Under Approval" name="filter_under_approval" domain="[('state', '=', 'under_approval')]"/>
+                <filter string="Approved" name="filter_approved" domain="[('state', '=', 'approved')]"/>
+                <filter string="Not Approved" name="filter_not_approved" domain="[('state', '=', 'not_approved')]"/>
+                <group>
+                    <filter string="Approval Status" name="group_by_state" context="{'group_by': 'state'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view_approval" model="ir.ui.view">
+        <field name="name">product.template.list.approval</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="state" optional="show" widget="badge"
+                       decoration-success="state == 'approved'"
+                       decoration-warning="state == 'under_approval'"
+                       decoration-danger="state == 'not_approved'"
+                       decoration-muted="state == 'draft'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

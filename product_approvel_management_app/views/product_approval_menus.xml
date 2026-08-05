@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_product_under_approval" model="ir.actions.act_window">
+        <field name="name">Under Approval Products</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('state', '=', 'under_approval')]</field>
+        <field name="context">{'search_default_filter_under_approval': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No products are waiting for approval right now.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_product_under_approval"
+              name="Under Approval Products"
+              parent="stock.menu_stock_root"
+              action="action_product_under_approval"
+              groups="product_approvel_management_app.group_product_manager"
+              sequence="6"/>
+</odoo>

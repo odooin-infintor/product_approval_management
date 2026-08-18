@@ -1,395 +1,389 @@
-<!-- ============================================================
-     Product Approval Management for Odoo — App Store description
-     Fixed for embedding inside apps.odoo.com:
-     - No <html>/<head>/<body> wrapper (Odoo inserts this as a fragment)
-     - Everything scoped under .opm-app to avoid clashing with Odoo's own CSS
-     - Unique element IDs (opm-…) so anchors don't collide with the host page
-     - Grids use auto-fit instead of fixed columns + viewport media queries,
-       so they resize correctly even though the App Store column is
-       narrower than the actual browser viewport
-     - Removed sticky positioning on the top bar (fights with Odoo's own header)
-     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Approval Management for Odoo</title>
+  <link rel="icon" type="image/png" href="icon.png">
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-<!-- Font Awesome CDN for Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- Font Awesome CDN for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-<style>
-  /* ============ Design tokens (scoped to this page only) ============ */
-  .opm-app{
-    --paper:      #F7F5EE;
-    --paper-deep: #EFEBDF;
-    --ink:        #14231C;
-    --muted:      #5B6961;
-    --forest:     #0F3D2E;
-    --forest-2:   #14513F;
-    --sage:       #1B6A50;
-    --mint:       #CFE9DB;
-    --mint-tint:  #CFE9DB40;
-    --gold:       #C98F2B;
-    --gold-deep:  #93641A;
-    --line:       #DEDACB;
-    --shadow:     0 20px 45px -20px rgba(15,61,46,.28);
-    --radius-lg:  26px;
-    --radius-md:  18px;
-    --font-display: "Fraunces", serif;
-    --font-body:    "Inter", sans-serif;
-    --font-mono:    "IBM Plex Mono", monospace;
-  }
+  <style>
+    /* ============ Design tokens ============ */
+    :root{
+      --paper:      #F7F5EE;
+      --paper-deep: #EFEBDF;
+      --ink:        #14231C;
+      --muted:      #5B6961;
+      --forest:     #0F3D2E;
+      --forest-2:   #14513F;
+      --sage:       #1B6A50;
+      --mint:       #CFE9DB;
+      --mint-tint:  #CFE9DB40;
+      --gold:       #C98F2B;
+      --gold-deep:  #93641A;
+      --line:       #DEDACB;
+      --shadow:     0 20px 45px -20px rgba(15,61,46,.28);
+      --radius-lg:  26px;
+      --radius-md:  18px;
+      --font-display: "Fraunces", serif;
+      --font-body:    "Inter", sans-serif;
+      --font-mono:    "IBM Plex Mono", monospace;
+    }
 
-  .opm-app, .opm-app *{ box-sizing: border-box; }
-  .opm-app{
-    margin:0;
-    font-family: var(--font-body);
-    background: var(--paper);
-    color: var(--ink);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    line-height: normal;
-  }
-  .opm-app img{ max-width:100%; height:auto; display:block; }
-  .opm-app a{ color: inherit; }
-  .opm-app :focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img{ max-width:100%; height:auto; display:block; }
+    a{ color: inherit; }
+    :focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
 
-  .opm-app .wrap{ width:100%; max-width:1180px; margin:0 auto; padding:0 24px; }
-  .opm-app .eyebrow{
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--gold-deep);
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-  }
-  .opm-app .eyebrow::before{
-    content:"";
-    width:26px; height:1px;
-    background: var(--gold-deep);
-    display:inline-block;
-  }
-  .opm-app h1, .opm-app h2, .opm-app h3, .opm-app h4, .opm-app h5{
-    font-family: var(--font-display); margin:0;
-  }
-  .opm-app .accent{ color: var(--sage); font-style: italic; }
-  .opm-app .lede{ color: var(--muted); font-size: 17px; line-height: 1.7; }
+    .wrap{ width:100%; max-width:1180px; margin:0 auto; padding:0 24px; }
+    .eyebrow{
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:26px; height:1px;
+      background: var(--gold-deep);
+      display:inline-block;
+    }
+    h1,h2,h3,h4,h5{ font-family: var(--font-display); margin:0; }
+    .accent{ color: var(--sage); font-style: italic; }
+    .lede{ color: var(--muted); font-size: 17px; line-height: 1.7; }
 
-  /* ============ Top bar ============ */
-  .opm-app .topbar{
-    position: relative; top:0; z-index: 5;
-    background: rgba(247,245,238,.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .opm-app .topbar-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    flex-wrap: wrap; row-gap: 10px;
-    padding: 16px 24px; max-width:1180px; margin:0 auto;
-  }
-  .opm-app .brand{
-    display:flex; align-items:center; gap:10px;
-    font-family: var(--font-display); font-weight:600; font-size:19px;
-    text-decoration:none; color: var(--ink);
-  }
-  .opm-app .brand .stamp-dot{
-    width:30px; height:30px; border-radius:50%;
-    border:1.5px solid var(--forest);
-    display:flex; align-items:center; justify-content:center;
-    font-family: var(--font-mono); font-size:12px; font-weight:600; color: var(--forest);
-    transform: rotate(-8deg);
-    flex: 0 0 auto;
-  }
-  .opm-app .nav-links{ display:flex; flex-wrap:wrap; gap:20px 28px; list-style:none; margin:0; padding:0; }
-  .opm-app .nav-links a{
-    text-decoration:none; font-size:14.5px; font-weight:500; color: var(--muted);
-    transition: color .2s ease;
-  }
-  .opm-app .nav-links a:hover{ color: var(--forest); }
-  .opm-app .nav-cta{
-    font-family: var(--font-mono); font-size:13px; font-weight:600;
-    letter-spacing:.03em; text-decoration:none;
-    background: var(--forest); color:#fff;
-    padding:10px 20px; border-radius: 999px;
-    white-space:nowrap;
-    transition: transform .18s ease, background .2s ease;
-  }
-  .opm-app .nav-cta:hover{ background: var(--sage); transform: translateY(-1px); }
+    /* ============ Top bar ============ */
+    .topbar{
+      position: sticky; top:0; z-index: 50;
+      background: rgba(247,245,238,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 16px 24px; max-width:1180px; margin:0 auto;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-family: var(--font-display); font-weight:600; font-size:19px;
+      text-decoration:none; color: var(--ink);
+    }
+    .brand .stamp-dot{
+      width:30px; height:30px; border-radius:50%;
+      border:1.5px solid var(--forest);
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--font-mono); font-size:12px; font-weight:600; color: var(--forest);
+      transform: rotate(-8deg);
+    }
+    .nav-links{ display:flex; gap:32px; list-style:none; margin:0; padding:0; }
+    .nav-links a{
+      text-decoration:none; font-size:14.5px; font-weight:500; color: var(--muted);
+      transition: color .2s ease;
+    }
+    .nav-links a:hover{ color: var(--forest); }
+    .nav-cta{
+      font-family: var(--font-mono); font-size:13px; font-weight:600;
+      letter-spacing:.03em; text-decoration:none;
+      background: var(--forest); color:#fff;
+      padding:10px 20px; border-radius: 999px;
+      white-space:nowrap;
+      transition: transform .18s ease, background .2s ease;
+    }
+    .nav-cta:hover{ background: var(--sage); transform: translateY(-1px); }
+    .nav-toggle{ display:none; }
 
-  @container opm-container (max-width: 860px){
-    .opm-app .nav-links{ display:none; }
-  }
-  @media (max-width: 860px){
-    .opm-app .nav-links{ display:none; }
-  }
+    @media (max-width: 860px){
+      .nav-links{ display:none; }
+    }
 
-  /* ============ Hero ============ */
-  .opm-app .hero{
-    position: relative;
-    padding: 76px 0 40px;
-    overflow:hidden;
-  }
-  .opm-app .hero::before{
-    content:"";
-    position:absolute; inset:-20% -10% auto -10%;
-    height:520px;
-    background: radial-gradient(closest-side, rgba(27,106,80,.14), transparent 70%);
-    pointer-events:none;
-  }
-  .opm-app .hero-grid{
-    position:relative;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 56px;
-    align-items:center;
-  }
-  .opm-app .hero h1{
-    font-size: clamp(30px, 4.6vw, 54px);
-    font-weight:600;
-    line-height:1.08;
-    letter-spacing:-.01em;
-    margin: 18px 0 20px;
-    color: var(--ink);
-  }
-  .opm-app .hero-editions{
-    display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;
-  }
-  .opm-app .edition-pill{
-    font-family: var(--font-mono);
-    font-size:12.5px; font-weight:600; letter-spacing:.04em;
-    color: var(--forest);
-    border: 1px solid var(--forest);
-    border-radius: 999px;
-    padding: 8px 18px;
-    background: transparent;
-  }
+    /* ============ Hero ============ */
+    .hero{
+      position: relative;
+      padding: 76px 0 40px;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-20% -10% auto -10%;
+      height:520px;
+      background: radial-gradient(closest-side, rgba(27,106,80,.14), transparent 70%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 56px;
+      align-items:center;
+    }
+    .hero h1{
+      font-size: clamp(34px, 4.6vw, 54px);
+      font-weight:600;
+      line-height:1.08;
+      letter-spacing:-.01em;
+      margin: 18px 0 20px;
+      color: var(--ink);
+    }
+    .hero-editions{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;
+    }
+    .edition-pill{
+      font-family: var(--font-mono);
+      font-size:12.5px; font-weight:600; letter-spacing:.04em;
+      color: var(--forest);
+      border: 1px solid var(--forest);
+      border-radius: 999px;
+      padding: 8px 18px;
+      background: transparent;
+    }
 
-  /* Signature visual: stamped workflow chain */
-  .opm-app .stamp-chain{
-    position:relative;
-    background: linear-gradient(165deg, var(--forest) 0%, #0B2E22 100%);
-    border-radius: var(--radius-lg);
-    padding: 40px 30px;
-    box-shadow: var(--shadow);
-    color:#fff;
-    min-width: 0;
-  }
-  .opm-app .stamp-chain-label{
-    font-family: var(--font-mono);
-    font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
-    color: rgba(255,255,255,.55);
-    margin-bottom: 26px;
-  }
-  .opm-app .stamp-steps{ display:flex; flex-direction:column; gap:0; }
-  .opm-app .stamp-step{
-    display:flex; align-items:center; gap:16px;
-    padding: 14px 0;
-  }
-  .opm-app .stamp-step + .stamp-step{ border-top: 1px dashed rgba(255,255,255,.16); }
-  .opm-app .stamp-badge{
-    flex:0 0 auto;
-    width:52px; height:52px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    font-family: var(--font-mono); font-size:11px; font-weight:600;
-    text-align:center; line-height:1.15;
-    border: 2px solid currentColor;
-  }
-  .opm-app .stamp-step:nth-child(1) .stamp-badge{ color:#C8CFCB; transform: rotate(-6deg); }
-  .opm-app .stamp-step:nth-child(2) .stamp-badge{ color: var(--gold); transform: rotate(4deg); }
-  .opm-app .stamp-step:nth-child(3) .stamp-badge{ color:#7FE0B5; transform: rotate(-4deg); }
-  .opm-app .stamp-step .txt strong{ display:block; font-size:15.5px; font-weight:600; }
-  .opm-app .stamp-step .txt span{ font-size:13px; color: rgba(255,255,255,.6); }
+    /* Signature visual: stamped workflow chain */
+    .stamp-chain{
+      position:relative;
+      background: linear-gradient(165deg, var(--forest) 0%, #0B2E22 100%);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      color:#fff;
+    }
+    .stamp-chain-label{
+      font-family: var(--font-mono);
+      font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 26px;
+    }
+    .stamp-steps{ display:flex; flex-direction:column; gap:0; }
+    .stamp-step{
+      display:flex; align-items:center; gap:16px;
+      padding: 14px 0;
+    }
+    .stamp-step + .stamp-step{ border-top: 1px dashed rgba(255,255,255,.16); }
+    .stamp-badge{
+      flex:0 0 auto;
+      width:52px; height:52px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--font-mono); font-size:11px; font-weight:600;
+      text-align:center; line-height:1.15;
+      border: 2px solid currentColor;
+    }
+    .stamp-step:nth-child(1) .stamp-badge{ color:#C8CFCB; transform: rotate(-6deg); }
+    .stamp-step:nth-child(2) .stamp-badge{ color: var(--gold); transform: rotate(4deg); }
+    .stamp-step:nth-child(3) .stamp-badge{ color:#7FE0B5; transform: rotate(-4deg); }
+    .stamp-step .txt strong{ display:block; font-size:15.5px; font-weight:600; }
+    .stamp-step .txt span{ font-size:13px; color: rgba(255,255,255,.6); }
 
-  /* ============ Features ============ */
-  .opm-app section{ padding: 88px 0; }
-  .opm-app .section-head{ text-align:center; max-width:760px; margin: 0 auto 56px; }
-  .opm-app .section-head h2{
-    font-size: clamp(26px, 4.2vw, 42px);
-    font-weight:600; line-height:1.2; margin: 14px 0 0;
-  }
+    /* ============ Features ============ */
+    section{ padding: 88px 0; }
+    .section-head{ text-align:center; max-width:760px; margin: 0 auto 56px; }
+    .section-head h2{
+      font-size: clamp(28px, 4.2vw, 42px);
+      font-weight:600; line-height:1.2; margin: 14px 0 0;
+    }
 
-  .opm-app .feature-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .opm-app .feature-card{
-    display:flex; gap:22px;
-    background: var(--mint-tint);
-    border: 1px solid rgba(27,106,80,.12);
-    border-radius: var(--radius-md);
-    padding: 32px;
-    min-width: 0;
-    transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
-  }
-  .opm-app .feature-card:hover{
-    transform: translateY(-4px);
-    box-shadow: var(--shadow);
-    background: #E4F2EA;
-  }
-  .opm-app .feature-icon{
-    flex:0 0 auto; width:64px; height:64px;
-    border-radius: 16px;
-    background:#fff;
-    display:flex; align-items:center; justify-content:center;
-    box-shadow: 0 6px 16px -8px rgba(15,61,46,.35);
-  }
-  .opm-app .feature-icon img{ width:36px; height:36px; }
-  .opm-app .feature-card h5{
-    font-family: var(--font-body);
-    color: var(--forest-2); font-size:19px; font-weight:700;
-    letter-spacing:-.2px; margin-bottom:8px;
-  }
-  .opm-app .feature-card p{ margin:0; color: var(--muted); font-size:15px; line-height:1.65; }
+    .feature-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card{
+      display:flex; gap:22px;
+      background: var(--mint-tint);
+      border: 1px solid rgba(27,106,80,.12);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .feature-card:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      background: #E4F2EA;
+    }
+    .feature-icon{
+      flex:0 0 auto; width:64px; height:64px;
+      border-radius: 16px;
+      background:#fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 6px 16px -8px rgba(15,61,46,.35);
+    }
+    .feature-icon img{ width:36px; height:36px; }
+    .feature-card h5{
+      font-family: var(--font-body);
+      color: var(--forest-2); font-size:19px; font-weight:700;
+      letter-spacing:-.2px; margin-bottom:8px;
+    }
+    .feature-card p{ margin:0; color: var(--muted); font-size:15px; line-height:1.65; }
 
-  /* ============ Walkthrough ============ */
-  .opm-app .walkthrough-band{
-    background: linear-gradient(180deg, #FFFFFF 0%, var(--mint-tint) 100%);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .opm-app .timeline{
-    max-width: 880px; margin: 0 auto;
-    display:flex; flex-direction:column; gap:0;
-  }
-  .opm-app .step{
-    display:grid;
-    grid-template-columns: 56px 1fr;
-    gap: 20px;
-    padding: 44px 0;
-    position:relative;
-  }
-  .opm-app .step + .step{ border-top:1px solid var(--line); }
-  .opm-app .step-num{
-    width:52px; height:52px; border-radius:50%;
-    border: 2px dashed var(--gold);
-    display:flex; align-items:center; justify-content:center;
-    font-family: var(--font-mono); font-weight:600; font-size:17px;
-    color: var(--gold-deep);
-    transform: rotate(-4deg);
-    background:#fff;
-  }
-  .opm-app .step.is-blocked .step-num{ border-color:#C24E4E; color:#B23B3B; border-style:solid; }
-  .opm-app .step-body{ min-width: 0; }
-  .opm-app .step-body h3{
-    font-size: clamp(19px, 3.4vw, 27px);
-    font-weight:600; line-height:1.3; margin-bottom:10px;
-  }
-  .opm-app .step-body p{ color: var(--muted); font-size:16px; line-height:1.7; margin:0 0 18px; max-width:640px; }
-  .opm-app .shot-frame{
-    border-radius: 14px;
-    overflow:hidden;
-    border:1px solid var(--line);
-    box-shadow: 0 16px 34px -18px rgba(20,35,28,.3);
-    background:#fff;
-  }
-  .opm-app .shot-frame .shot-chrome{
-    display:flex; gap:6px; padding:10px 14px; background:#F1EFE5; border-bottom:1px solid var(--line);
-  }
-  .opm-app .shot-chrome span{ width:9px; height:9px; border-radius:50%; background:#D8D3C2; }
-  .opm-app .status-tag{
-    display:inline-flex; align-items:center; gap:6px;
-    font-family: var(--font-mono); font-size:11.5px; font-weight:600;
-    letter-spacing:.05em; text-transform:uppercase;
-    padding:4px 10px; border-radius:999px; margin-bottom:14px;
-  }
-  .opm-app .status-tag.ok{ background:#E4F2EA; color: var(--forest-2); }
-  .opm-app .status-tag.stop{ background:#FBE7E7; color:#B23B3B; }
+    /* ============ Walkthrough ============ */
+    .walkthrough-band{
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--mint-tint) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .timeline{
+      max-width: 880px; margin: 0 auto;
+      display:flex; flex-direction:column; gap:0;
+    }
+    .step{
+      display:grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      padding: 44px 0;
+      position:relative;
+    }
+    .step + .step{ border-top:1px solid var(--line); }
+    .step-num{
+      width:56px; height:56px; border-radius:50%;
+      border: 2px dashed var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--font-mono); font-weight:600; font-size:17px;
+      color: var(--gold-deep);
+      transform: rotate(-4deg);
+      background:#fff;
+    }
+    .step.is-blocked .step-num{ border-color:#C24E4E; color:#B23B3B; border-style:solid; }
+    .step-body h3{
+      font-size: clamp(20px, 2.6vw, 27px);
+      font-weight:600; line-height:1.3; margin-bottom:10px;
+    }
+    .step-body p{ color: var(--muted); font-size:16px; line-height:1.7; margin:0 0 18px; max-width:640px; }
+    .shot-frame{
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: 0 16px 34px -18px rgba(20,35,28,.3);
+      background:#fff;
+    }
+    .shot-frame .shot-chrome{
+      display:flex; gap:6px; padding:10px 14px; background:#F1EFE5; border-bottom:1px solid var(--line);
+    }
+    .shot-chrome span{ width:9px; height:9px; border-radius:50%; background:#D8D3C2; }
+    .status-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      font-family: var(--font-mono); font-size:11.5px; font-weight:600;
+      letter-spacing:.05em; text-transform:uppercase;
+      padding:4px 10px; border-radius:999px; margin-bottom:14px;
+    }
+    .status-tag.ok{ background:#E4F2EA; color: var(--forest-2); }
+    .status-tag.stop{ background:#FBE7E7; color:#B23B3B; }
 
-  /* ============ Services ============ */
-  .opm-app .services{ background: var(--paper); }
-  .opm-app .services-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap:18px;
-  }
-  .opm-app .service-card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius: var(--radius-md);
-    padding: 30px 24px;
-    text-align:left;
-    min-width: 0;
-    transition: border-color .2s ease, transform .2s ease;
-  }
-  .opm-app .service-card:hover{ border-color: var(--sage); transform: translateY(-3px); }
-  .opm-app .service-icon{
-    width:46px; height:46px; border-radius:12px;
-    background: var(--mint-tint);
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:16px;
-  }
-  .opm-app .service-icon img{ width:24px; height:24px; }
-  .opm-app .service-card h4{ font-family: var(--font-body); font-size:16.5px; font-weight:700; margin-bottom:8px; }
-  .opm-app .service-card p{ font-size:14px; color: var(--muted); line-height:1.6; margin:0; }
+    /* ============ Services ============ */
+    .services{ background: var(--paper); }
+    .services-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:18px;
+    }
+    .service-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      text-align:left;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .service-card:hover{ border-color: var(--sage); transform: translateY(-3px); }
+    .service-icon{
+      width:46px; height:46px; border-radius:12px;
+      background: var(--mint-tint);
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:16px;
+    }
+    .service-icon img{ width:24px; height:24px; }
+    .service-card h4{ font-family: var(--font-body); font-size:16.5px; font-weight:700; margin-bottom:8px; }
+    .service-card p{ font-size:14px; color: var(--muted); line-height:1.6; margin:0; }
 
-  /* ============ Support ============ */
-  .opm-app .support{
-    background: var(--forest);
-    color:#fff;
-    border-radius: var(--radius-lg);
-    margin: 0 24px;
-    padding: 64px clamp(20px, 5vw, 40px);
-  }
-  .opm-app .support-inner{ max-width:1120px; margin:0 auto; }
-  .opm-app .support .section-head h2{ color:#fff; }
-  .opm-app .support .eyebrow{ color: var(--gold); }
-  .opm-app .support .eyebrow::before{ background: var(--gold); }
-  .opm-app .support-grid{
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px;
-  }
-  .opm-app .support-item{
-    background: rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.14);
-    border-radius: 16px;
-    padding: 26px 20px;
-    display:flex; flex-direction:column; gap:14px;
-    min-width: 0;
-  }
-  .opm-app .support-item i{ font-size:20px; color: var(--gold); }
-  .opm-app .support-item span{ font-size:14.5px; line-height:1.55; color: rgba(255,255,255,.88); word-break: break-word; }
-  .opm-app .support-item a{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+    /* ============ Support ============ */
+    .support{
+      background: var(--forest);
+      color:#fff;
+      border-radius: var(--radius-lg);
+      margin: 0 24px;
+      padding: 64px 40px;
+    }
+    .support-inner{ max-width:1120px; margin:0 auto; }
+    .support .section-head h2{ color:#fff; }
+    .support .eyebrow{ color: var(--gold); }
+    .support .eyebrow::before{ background: var(--gold); }
+    .support-grid{
+      display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:16px;
+    }
+    .support-item{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      padding: 26px 20px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .support-item i{ font-size:20px; color: var(--gold); }
+    .support-item span{ font-size:14.5px; line-height:1.55; color: rgba(255,255,255,.88); }
+    .support-item a{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
 
-  .opm-app footer{
-    text-align:center;
-    padding: 40px 24px 56px;
-    font-size:13px;
-    color: var(--muted);
-    font-family: var(--font-mono);
-  }
+    footer{
+      text-align:center;
+      padding: 40px 24px 56px;
+      font-size:13px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
 
-  /* ============ Responsive (true small-viewport fallback) ============ */
-  @media (max-width: 640px){
-    .opm-app .step{ grid-template-columns: 1fr; }
-    .opm-app .step-num{ margin-bottom:6px; }
-    .opm-app .support{ margin:0 12px; padding: 44px 22px; }
-    .opm-app .feature-card{ flex-direction:column; padding:26px; }
-  }
-</style>
-
-<div class="opm-app" style="container-type:inline-size; container-name:opm-container;">
+    /* ============ Responsive ============ */
+    @media (max-width: 991px){
+      .hero-grid{ grid-template-columns: 1fr; gap:44px; }
+      .feature-grid{ grid-template-columns: 1fr; }
+      .services-grid{ grid-template-columns: repeat(2,1fr); }
+      .support-grid{ grid-template-columns: repeat(2,1fr); }
+      section{ padding: 64px 0; }
+    }
+    @media (max-width: 640px){
+      .step{ grid-template-columns: 1fr; }
+      .step-num{ margin-bottom:6px; }
+      .services-grid{ grid-template-columns: 1fr; }
+      .support-grid{ grid-template-columns: 1fr; }
+      .support{ margin:0 12px; padding: 44px 22px; }
+      .feature-card{ flex-direction:column; padding:26px; }
+    }
+  </style>
+</head>
+<body>
 
   <!-- ============ Top bar ============ -->
   <div class="topbar">
     <div class="topbar-inner">
-      <a href="#opm-top" class="brand">
+      <a href="#top" class="brand">
         <span class="stamp-dot">OK</span>
         Product Approval
       </a>
       <ul class="nav-links">
-        <li><a href="#opm-features">Features</a></li>
-        <li><a href="#opm-walkthrough">Walkthrough</a></li>
-        <li><a href="#opm-services">Services</a></li>
-        <li><a href="#opm-support">Support</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#walkthrough">Walkthrough</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#support">Support</a></li>
       </ul>
       <a class="nav-cta" href="https://people.infintor.com/contactus" target="_blank">Get in touch</a>
     </div>
   </div>
 
-  <div class="main-body" id="opm-top">
+  <div class="main-body" id="top">
 
     <!-- ============ Hero ============ -->
     <section class="hero">
@@ -431,7 +425,7 @@
     </section>
 
     <!-- ============ Features ============ -->
-    <section id="opm-features">
+    <section id="features">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow">Why it works</span>
@@ -507,7 +501,7 @@
     </section>
 
     <!-- ============ Walkthrough ============ -->
-    <section id="opm-walkthrough" class="walkthrough-band">
+    <section id="walkthrough" class="walkthrough-band">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow">How it works</span>
@@ -595,9 +589,9 @@
             <div class="step-body">
               <span class="status-tag stop">Blocked</span>
               <h3>Blocked on Purchase Orders</h3>
-              <p>Trying to save a Request for Quotation with an unapproved product raises a clear Validation Error: only Approved products can be added to a purchase order.</p>
+              <p>An unapproved product can't be selected on a Request for Quotation – it simply doesn't appear as an existing product to pick.</p>
               <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/08-purchase-order-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Purchase Order"></div>
+                <img src="screenshots/08-purchase-order-blocked.png" alt="Unapproved product not selectable on a Purchase Order line"></div>
             </div>
           </div>
 
@@ -606,9 +600,9 @@
             <div class="step-body">
               <span class="status-tag stop">Blocked</span>
               <h3>Blocked on Customer Invoices</h3>
-              <p>The same protection applies to invoicing: trying to confirm a Customer Invoice with an unapproved product raises a Validation Error listing every unapproved line.</p>
+              <p>The same protection applies to invoicing – an unapproved product can't be added to a Customer Invoice line either.</p>
               <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/09-invoice-validation-error.png" alt="Validation Error blocking unapproved products from being used on a Customer Invoice"></div>
+                <img src="screenshots/09-invoice-blocked.png" alt="Unapproved product not selectable on a Customer Invoice line"></div>
             </div>
           </div>
 
@@ -616,21 +610,10 @@
             <div class="step-num">10</div>
             <div class="step-body">
               <span class="status-tag stop">Blocked</span>
-              <h3>Blocked on Sales Quotations</h3>
-              <p>Sales is covered too: adding an unapproved product to a Quotation raises the same Validation Error before it can be sent or confirmed.</p>
-              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/10-sales-qutation-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Sales Quotation"></div>
-            </div>
-          </div>
-
-          <div class="step is-blocked">
-            <div class="step-num">11</div>
-            <div class="step-body">
-              <span class="status-tag stop">Blocked</span>
               <h3>Blocked on Inventory Transfers</h3>
               <p>Trying to validate a receipt containing an unapproved product raises a clear Validation Error: only Approved products can be moved in Inventory.</p>
               <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/11-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt"></div>
+                <img src="screenshots/10-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt"></div>
             </div>
           </div>
 
@@ -639,7 +622,7 @@
     </section>
 
     <!-- ============ Services ============ -->
-    <section id="opm-services" class="services">
+    <section id="services" class="services">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow">Beyond the module</span>
@@ -691,7 +674,7 @@
     </section>
 
     <!-- ============ Support ============ -->
-    <section id="opm-support" style="padding-top:0;">
+    <section id="support" style="padding-top:0;">
       <div class="support">
         <div class="support-inner">
           <div class="section-head" style="margin-bottom:40px;">
@@ -723,4 +706,5 @@
     <footer>Product Approval Management for Odoo — by Infintor</footer>
 
   </div>
-</div>
+</body>
+</html>

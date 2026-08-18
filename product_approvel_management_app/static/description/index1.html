@@ -1,55 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Approval Management for Odoo</title>
-<style>
-  /* ---- Base fixes so nothing overflows the viewport (same fix pattern as working-index.html) ---- */
-  * { box-sizing: border-box; }
-  html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  img { max-width: 100%; height: auto; }
-
-  /* ---- Responsive typography & spacing ---- */
-  @media (max-width: 900px) {
-    .header-row { padding: 14px 16px !important; }
-    .nav-links { display: none !important; }
-    .section-wrap { padding-left: 16px !important; padding-right: 16px !important; }
-    .hero-wrap { padding: 40px 16px 28px !important; }
-    .hero-row { gap: 32px !important; }
-    .hero-title { font-size: 30px !important; }
-    .section-title { font-size: 26px !important; }
-    .lifecycle-card { padding: 28px 20px !important; }
-    .card-feature { padding: 24px !important; flex-basis: 100% !important; }
-    .card-service { flex-basis: 100% !important; }
-    .card-support { flex-basis: 100% !important; }
-    .step-row { gap: 16px !important; padding: 24px 0 !important; }
-    .support-panel { padding: 36px 20px !important; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-title { font-size: 25px !important; }
-    .section-title { font-size: 21px !important; }
-    .step-row { flex-direction: column !important; }
-  }
-</style>
-</head>
-<body>
 <div style="font-family:Arial,Helvetica,sans-serif;background:#F7F5EE;color:#14231C;margin:0;padding:0;">
 
   <!-- ============ Top bar ============ -->
-  <div class="site-header" style="background:#F7F5EE;border-bottom:1px solid #DEDACB;">
-    <div class="header-row" style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:14px;">
+  <div style="background:#F7F5EE;border-bottom:1px solid #DEDACB;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:14px;">
       <a href="#top" style="display:flex;align-items:center;gap:10px;font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:19px;text-decoration:none;color:#14231C;">
         <span style="width:30px;height:30px;border-radius:50%;border:1.5px solid #0F3D2E;display:inline-flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:12px;font-weight:600;color:#0F3D2E;">OK</span>
         Product Approval
       </a>
-      <ul class="nav-links" style="display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
+      <ul style="display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
         <li><a href="#features" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Features</a></li>
         <li><a href="#walkthrough" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Walkthrough</a></li>
         <li><a href="#services" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Services</a></li>
@@ -62,15 +20,15 @@
   <div id="top">
 
     <!-- ============ Hero ============ -->
-    <div class="section-wrap hero-wrap" style="max-width:1180px;margin:0 auto;padding:64px 24px 40px;">
-      <div class="hero-row" style="display:flex;flex-wrap:wrap;gap:56px;align-items:center;">
+    <div style="max-width:1180px;margin:0 auto;padding:64px 24px 40px;">
+      <div style="display:flex;flex-wrap:wrap;gap:56px;align-items:center;">
 
         <div style="flex:1 1 460px;">
           <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
             <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
             Odoo Product Module
           </span>
-          <h1 class="hero-title" style="font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:18px 0 20px;color:#14231C;">
+          <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:18px 0 20px;color:#14231C;">
             <span style="color:#1B6A50;font-style:italic;">Product Approval Management</span> for Odoo
           </h1>
           <p style="color:#5B6961;font-size:17px;line-height:1.7;margin:0;">
@@ -86,7 +44,7 @@
           </div>
         </div>
 
-        <div class="lifecycle-card" style="flex:1 1 380px;background:linear-gradient(165deg,#0F3D2E 0%,#0B2E22 100%);border-radius:26px;padding:40px 30px;box-shadow:0 20px 45px -20px rgba(15,61,46,.28);color:#ffffff;">
+        <div style="flex:1 1 380px;background:linear-gradient(165deg,#0F3D2E 0%,#0B2E22 100%);border-radius:26px;padding:40px 30px;box-shadow:0 20px 45px -20px rgba(15,61,46,.28);color:#ffffff;">
           <div style="font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:26px;">Product lifecycle</div>
           <div>
             <div style="display:flex;align-items:center;gap:16px;padding:14px 0;">
@@ -108,20 +66,20 @@
     </div>
 
     <!-- ============ Features ============ -->
-    <div id="features" class="section-wrap" style="max-width:1180px;margin:0 auto;padding:72px 24px;">
+    <div id="features" style="max-width:1180px;margin:0 auto;padding:72px 24px;">
       <div style="text-align:center;max-width:760px;margin:0 auto 48px;">
         <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
           <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
           Why it works
         </span>
-        <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
+        <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
           <span style="color:#1B6A50;font-style:italic;">Key Features</span> of Product Approval Management
         </h2>
       </div>
 
       <div style="display:flex;flex-wrap:wrap;gap:20px;">
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-auto-submission.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Automatic Approval Submission</h5>
@@ -129,7 +87,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-server-protected.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Server-Side Protected Approvals</h5>
@@ -137,7 +95,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-group-config.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Configurable Approval Group</h5>
@@ -145,7 +103,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-mass-actions.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Mass Approve &amp; Mass Reject</h5>
@@ -153,7 +111,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-role-based.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Role-Based Approve &amp; Reject</h5>
@@ -161,7 +119,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-reject-reason.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Mandatory Reject Reasons</h5>
@@ -169,7 +127,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-chatter-notify.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Chatter &amp; Notification Alerts</h5>
@@ -177,7 +135,7 @@
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
+        <div style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
           <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-enforced-everywhere.svg" style="width:36px;height:36px;display:block;"></div>
           <div>
             <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Enforced Everywhere</h5>
@@ -190,13 +148,13 @@
 
     <!-- ============ Walkthrough ============ -->
     <div id="walkthrough" style="background:linear-gradient(180deg,#FFFFFF 0%,rgba(207,233,219,0.25) 100%);border-top:1px solid #DEDACB;border-bottom:1px solid #DEDACB;padding:72px 0;">
-      <div class="section-wrap" style="max-width:1180px;margin:0 auto;padding:0 24px;">
+      <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
         <div style="text-align:center;max-width:760px;margin:0 auto 48px;">
           <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
             <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
             How it works
           </span>
-          <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
+          <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
             <span style="color:#1B6A50;font-style:italic;">Screenshots</span> Walkthrough
           </h2>
           <p style="color:#5B6961;font-size:17px;line-height:1.7;margin-top:14px;">
@@ -207,7 +165,7 @@
 
         <div style="max-width:880px;margin:0 auto;">
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">1</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Configure</span> the Product Manager Role</h3>
@@ -219,7 +177,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">2</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Create</span> a New Product</h3>
@@ -231,7 +189,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">3</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Under Approval</span> Products List</h3>
@@ -243,7 +201,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">4</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Review</span> &amp; Approve a Product</h3>
@@ -255,7 +213,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">5</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Reject</span> with a Required Reason</h3>
@@ -267,7 +225,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">6</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Mass Approve</span> &amp; Mass Reject</h3>
@@ -279,7 +237,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">7</div>
             <div>
               <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Mass Reject</span> Wizard</h3>
@@ -291,7 +249,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">8</div>
             <div>
               <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
@@ -304,7 +262,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">9</div>
             <div>
               <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
@@ -317,7 +275,7 @@
             </div>
           </div>
 
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+          <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">10</div>
             <div>
               <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
@@ -330,7 +288,7 @@
             </div>
           </div>
 
-           <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
+           <div style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
             <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">10</div>
             <div>
               <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
@@ -349,52 +307,52 @@
 
     <!-- ============ Services ============ -->
     <div id="services" style="background:#F7F5EE;padding:72px 0;">
-      <div class="section-wrap" style="max-width:1180px;margin:0 auto;padding:0 24px;">
+      <div style="max-width:1180px;margin:0 auto;padding:0 24px;">
         <div style="text-align:center;max-width:760px;margin:0 auto 48px;">
           <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
             <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
             Beyond the module
           </span>
-          <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;"><span style="color:#1B6A50;font-style:italic;">Our</span> Services</h2>
+          <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;"><span style="color:#1B6A50;font-style:italic;">Our</span> Services</h2>
         </div>
 
         <div style="display:flex;flex-wrap:wrap;gap:18px;">
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/custom.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Implementation</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">End-to-end Odoo implementation to meet your business needs.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/implementation.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Customization</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Custom solutions tailored to your unique requirements.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/customer-service.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Support &amp; Training</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Comprehensive support and training to enhance your Odoo usage.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/hired.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Hire an Odoo Developer</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Get access to skilled Odoo developers for your project needs.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/technology.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Integration</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Integrate Odoo seamlessly with third-party apps and systems.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/cloud-server.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Hosting &amp; Cloud</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Secure and scalable Odoo hosting solutions.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/schedule.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Maintenance</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Ensure smooth and uninterrupted operations.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
+          <div style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
             <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/consultant.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Consulting</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Expert consulting to help you leverage Odoo for maximum efficiency.</p>
@@ -405,29 +363,29 @@
 
     <!-- ============ Support ============ -->
     <div id="support" style="padding:0 24px 64px;">
-      <div class="support-panel" style="background:#0F3D2E;color:#ffffff;border-radius:26px;padding:56px 40px;max-width:1132px;margin:0 auto;">
+      <div style="background:#0F3D2E;color:#ffffff;border-radius:26px;padding:56px 40px;max-width:1132px;margin:0 auto;">
         <div style="max-width:1120px;margin:0 auto;">
           <div style="text-align:center;max-width:760px;margin:0 auto 40px;">
             <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#C98F2B;display:inline-flex;align-items:center;gap:10px;">
               <span style="width:26px;height:1px;background:#C98F2B;display:inline-block;"></span>
               We've got you
             </span>
-            <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#ffffff;">Support &amp; Demo</h2>
+            <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#ffffff;">Support &amp; Demo</h2>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:16px;">
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+            <div style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
               <div style="font-size:20px;margin-bottom:14px;">&#128737;</div>
               <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">90 days of free support included with every purchase</span>
             </div>
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+            <div style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
               <div style="font-size:20px;margin-bottom:14px;">&#127903;</div>
               <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">Create a support ticket at <a href="https://people.infintor.com/contactus" target="_blank" style="color:#ffffff;text-decoration:underline;">people.infintor.com/contactus</a></span>
             </div>
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+            <div style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
               <div style="font-size:20px;margin-bottom:14px;">&#9993;</div>
               <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">Send an email to <a href="mailto:odoo@infintor.com" style="color:#ffffff;text-decoration:underline;">odoo@infintor.com</a></span>
             </div>
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+            <div style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
               <div style="font-size:20px;margin-bottom:14px;">&#127760;</div>
               <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">Visit <a href="https://www.infintor.com" target="_blank" style="color:#ffffff;text-decoration:underline;">www.infintor.com</a></span>
             </div>
@@ -440,5 +398,3 @@
 
   </div>
 </div>
-</body>
-</html>

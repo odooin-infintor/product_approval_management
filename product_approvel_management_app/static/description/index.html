@@ -1,375 +1,721 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Product Approval Management for Odoo</title>
-      <link rel="icon" type="image/png" href="icon.png">
-      <!-- Font Awesome CDN for Icons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-      <style>
-        /* General Styles */
-         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #F6FAF7;
-            overflow-x: hidden;
-         }
-         img { max-width: 100%; height: auto; }
-         .support-content { max-width: 100%; }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Approval Management for Odoo</title>
+  <link rel="icon" type="image/png" href="icon.png">
 
-         /* Tablets & small laptops */
-         @media (max-width: 991px) {
-            .row_box { padding-left: 15px; padding-right: 15px; }
-            section.container .row.pt-5.pb-5,
-            .row_box .row.pt-5.pb-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
-         }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-         /* Phones in landscape / small tablets: feature boxes start stacking here too */
-         @media (max-width: 767px) {
-            .box { padding: 25px !important; }
-            .box.d-flex { flex-direction: column; text-align: center; }
-            .box.d-flex img { margin: 0 auto 12px !important; width: 70px !important; height: 70px !important; }
-            .box-in { text-align: center !important; }
-            .row_box .row.pt-5.pb-5,
-            .row_box .row.pt-3.pb-5 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
-            section.container .row.pt-5.pb-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
-         }
+  <!-- Font Awesome CDN for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-         /* Phones */
-         @media (max-width: 576px) {
-            body { margin: 10px; }
-            .box { padding: 20px !important; }
-            .box.d-flex { flex-direction: column; text-align: center; }
-            .box.d-flex img { margin: 0 auto 12px !important; width: 60px !important; height: 60px !important; }
-            .box-in { text-align: center !important; }
-            .hero-pill-wrap { max-width: 100% !important; flex: 0 0 100% !important; }
-            .row_box { padding-left: 10px; padding-right: 10px; }
-         }
+  <style>
+    /* ============ Design tokens ============ */
+    :root{
+      --paper:      #F7F5EE;
+      --paper-deep: #EFEBDF;
+      --ink:        #14231C;
+      --muted:      #5B6961;
+      --forest:     #0F3D2E;
+      --forest-2:   #14513F;
+      --sage:       #1B6A50;
+      --mint:       #CFE9DB;
+      --mint-tint:  #CFE9DB40;
+      --gold:       #C98F2B;
+      --gold-deep:  #93641A;
+      --line:       #DEDACB;
+      --shadow:     0 20px 45px -20px rgba(15,61,46,.28);
+      --radius-lg:  26px;
+      --radius-md:  18px;
+      --font-display: "Fraunces", serif;
+      --font-body:    "Inter", sans-serif;
+      --font-mono:    "IBM Plex Mono", monospace;
+    }
 
-         /* Extra small phones */
-         @media (max-width: 400px) {
-            h1 { font-size: 26px !important; }
-            .box.d-flex img { width: 50px !important; height: 50px !important; }
-         }
-      </style>
-   </head>
-   <body>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-      <div class="main-body">
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img{ max-width:100%; height:auto; display:block; }
+    a{ color: inherit; }
+    :focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
 
-       <section class="container">
-               <div class="position-relative pt-5 pb-5">
-                <div class="row position-relative justify-content-center">
-                  <h1 class="mb-2 col-12" style="font-weight:700; font-size:clamp(28px, 7vw, 50px); line-height:1.2; text-align:center; color:#171618">
-                    <span style="color:#1B6A50">Product Approval Management </span>for Odoo
-                  </h1>
-                  <p style="text-align:center; font-weight:400; font-size:16px; line-height:25px; color:#171618" class="mb-4 col-lg-10 col-12">
-                    Put a proper review step in front of every product before it can be sold, bought, invoiced, or moved.<br>
-Our Product Approval Management module adds a clear Draft → Under Approval → Approved workflow to the product form. Only designated Product Managers can approve or reject, rejections require a reason, and unapproved products are automatically blocked from Sales, Purchase, Invoicing and Inventory documents.
-                  </p>
-                </div>
-                <div class="position-relative row mx-auto justify-content-center">
-                  <div class="col-11 col-sm-9 hero-pill-wrap">
-                    <div class="d-flex justify-content-center align-items-center flex-wrap gap-2">
-<div class="d-flex align-items-center" style="justify-content: center; flex:1 1 150px;max-width:220px;background-color:#134A3A;border:2px solid #ffffff;border-radius:50px;padding:10px 20px;">
-                        <p style="color:#ffffff; font-size:clamp(13px, 1.6vw, 18px)" class="mb-0">Community</p>
-                      </div>
-<div class="d-flex align-items-center" style="justify-content: center; flex:1 1 150px;max-width:220px;background-color:#134A3A;border:2px solid #ffffff;border-radius:50px;padding:10px 20px;">
-                        <p style="color:#ffffff; font-size:clamp(13px, 1.6vw, 18px)" class="mb-0">Enterprise</p>
-                      </div><div class="d-flex align-items-center" style="justify-content: center; flex:1 1 150px;max-width:220px;background-color:#134A3A;border:2px solid #ffffff;border-radius:50px;padding:10px 20px;">
-                        <p style="color:#ffffff; font-size:clamp(13px, 1.6vw, 18px)" class="mb-0">Odoo.sh</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-         </section>
-         <section class="container">
-         <!-- Features Highlight Section -->
-         <div class="container features-highlight text-center pt-5">
-            <div class="row my-3 py-2" style="justify-content:center">
-               <h2 class="pt-5 mb-2 col-12" style="font-size:clamp(24px, 5.5vw, 38px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                  <span style="color:#1B6A50">Key Features </span>of Product Approval Management for Odoo
-               </h2>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-auto-submission.svg">
-                     <div class="box-in" style="text-align: left;">
-                         <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Automatic Approval Submission</h5>
-                         <p style="margin: 0px;text-align: justify;">Every new product is routed to Under Approval the moment it's saved – no separate "send for approval" step to remember, and no product slips through as an untracked Draft.</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-server-protected.svg">
-                     <div class="box-in" style="text-align: left;">
-                        <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Server-Side Protected Approvals</h5>
-                        <p style="margin: 0px;text-align: justify;">Approve and Reject are guarded on the server, not just hidden in the UI. Even a call from developer mode outside the Product Manager group is refused, with a clear error message.</p><br>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-group-config.svg">
-                     <div class="box-in" style="text-align: left;">
-                        <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Configurable Approval Group</h5>
-                        <p style="margin: 0px;text-align: justify;">A dedicated Product Manager access group decides who can approve. Assign it to exactly the people responsible for sign-off from Settings → Users, in a couple of clicks.</p>
-                      </div>
-                 </div>
-               </div>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-mass-actions.svg">
-                     <div class="box-in" style="text-align: left;">
-                        <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Mass Approve &amp; Mass Reject</h5>
-                        <p style="margin: 0px;text-align: justify;">Clear a backlog of pending products in two clicks. Select several from the list view and approve them together, or reject them all with one shared reason.</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-role-based.svg">
-                     <div class="box-in" style="text-align: left;">
-                        <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Role-Based Approve &amp; Reject</h5>
-                        <p style="margin: 0px;text-align: justify;">Only Product Managers ever see the Approve, Reject and Reset to Draft buttons. Everyone else keeps creating and editing products exactly as before.</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-reject-reason.svg">
-                     <div class="box-in" style="text-align: left;">
-                        <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Mandatory Reject Reasons</h5>
-                        <p style="margin: 0px;text-align: justify;">Rejecting opens a wizard that won't confirm without a reason. That reason is then pinned to the product as a persistent red banner, so nobody has to ask why.</p><br>
-                     </div>
-                  </div>
-               </div>
-                <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-chatter-notify.svg">
-                     <div class="box-in" style="text-align: left;">
-                        <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Chatter &amp; Notification Alerts</h5>
-                        <p style="margin: 0px;text-align: justify;">Submission, approval and rejection are all logged to the chatter and pushed as a notification – to every Product Manager on submission, and to the creator on the outcome.</p>
-                      </div>
-                 </div>
-               </div>
-               <div class="col-md-6 col-sm-6 feature-item p-1">
-                  <div class="box d-flex" style="padding: 40px;border-radius: 15px;background-color: #CFE9DB40;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="100" height="100" src="./images/approval-enforced-everywhere.svg">
-                     <div class="box-in" style="text-align: left;">
-                         <h5 style="color: #14513F;font-size: 24px;letter-spacing: -.4px;">Enforced Everywhere</h5>
-                         <p style="margin: 0px;text-align: justify;">Unapproved products simply don't appear in Sales Orders, Purchase Orders, Invoices, Vendor Bills, or Inventory transfers – including receipts, deliveries, returns and scraps.</p>
-                     </div>
-                  </div>
-               </div>
+    .wrap{ width:100%; max-width:1180px; margin:0 auto; padding:0 24px; }
+    .eyebrow{
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:26px; height:1px;
+      background: var(--gold-deep);
+      display:inline-block;
+    }
+    h1,h2,h3,h4,h5{ font-family: var(--font-display); margin:0; }
+    .accent{ color: var(--sage); font-style: italic; }
+    .lede{ color: var(--muted); font-size: 17px; line-height: 1.7; }
+
+    /* ============ Top bar ============ */
+    .topbar{
+      position: sticky; top:0; z-index: 50;
+      background: rgba(247,245,238,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 16px 24px; max-width:1180px; margin:0 auto;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-family: var(--font-display); font-weight:600; font-size:19px;
+      text-decoration:none; color: var(--ink);
+    }
+    .brand .stamp-dot{
+      width:30px; height:30px; border-radius:50%;
+      border:1.5px solid var(--forest);
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--font-mono); font-size:12px; font-weight:600; color: var(--forest);
+      transform: rotate(-8deg);
+    }
+    .nav-links{ display:flex; gap:32px; list-style:none; margin:0; padding:0; }
+    .nav-links a{
+      text-decoration:none; font-size:14.5px; font-weight:500; color: var(--muted);
+      transition: color .2s ease;
+    }
+    .nav-links a:hover{ color: var(--forest); }
+    .nav-cta{
+      font-family: var(--font-mono); font-size:13px; font-weight:600;
+      letter-spacing:.03em; text-decoration:none;
+      background: var(--forest); color:#fff;
+      padding:10px 20px; border-radius: 999px;
+      white-space:nowrap;
+      transition: transform .18s ease, background .2s ease;
+    }
+    .nav-cta:hover{ background: var(--sage); transform: translateY(-1px); }
+    .nav-toggle{ display:none; }
+
+    @media (max-width: 860px){
+      .nav-links{ display:none; }
+    }
+
+    /* ============ Hero ============ */
+    .hero{
+      position: relative;
+      padding: 76px 0 40px;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:-20% -10% auto -10%;
+      height:520px;
+      background: radial-gradient(closest-side, rgba(27,106,80,.14), transparent 70%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 56px;
+      align-items:center;
+    }
+    .hero h1{
+      font-size: clamp(34px, 4.6vw, 54px);
+      font-weight:600;
+      line-height:1.08;
+      letter-spacing:-.01em;
+      margin: 18px 0 20px;
+      color: var(--ink);
+    }
+    .hero-editions{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;
+    }
+    .edition-pill{
+      font-family: var(--font-mono);
+      font-size:12.5px; font-weight:600; letter-spacing:.04em;
+      color: var(--forest);
+      border: 1px solid var(--forest);
+      border-radius: 999px;
+      padding: 8px 18px;
+      background: transparent;
+    }
+
+    /* Signature visual: stamped workflow chain */
+    .stamp-chain{
+      position:relative;
+      background: linear-gradient(165deg, var(--forest) 0%, #0B2E22 100%);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      color:#fff;
+    }
+    .stamp-chain-label{
+      font-family: var(--font-mono);
+      font-size:11.5px; letter-spacing:.18em; text-transform:uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 26px;
+    }
+    .stamp-steps{ display:flex; flex-direction:column; gap:0; }
+    .stamp-step{
+      display:flex; align-items:center; gap:16px;
+      padding: 14px 0;
+    }
+    .stamp-step + .stamp-step{ border-top: 1px dashed rgba(255,255,255,.16); }
+    .stamp-badge{
+      flex:0 0 auto;
+      width:52px; height:52px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--font-mono); font-size:11px; font-weight:600;
+      text-align:center; line-height:1.15;
+      border: 2px solid currentColor;
+    }
+    .stamp-step:nth-child(1) .stamp-badge{ color:#C8CFCB; transform: rotate(-6deg); }
+    .stamp-step:nth-child(2) .stamp-badge{ color: var(--gold); transform: rotate(4deg); }
+    .stamp-step:nth-child(3) .stamp-badge{ color:#7FE0B5; transform: rotate(-4deg); }
+    .stamp-step .txt strong{ display:block; font-size:15.5px; font-weight:600; }
+    .stamp-step .txt span{ font-size:13px; color: rgba(255,255,255,.6); }
+
+    /* ============ Features ============ */
+    section{ padding: 88px 0; }
+    .section-head{ text-align:center; max-width:760px; margin: 0 auto 56px; }
+    .section-head h2{
+      font-size: clamp(28px, 4.2vw, 42px);
+      font-weight:600; line-height:1.2; margin: 14px 0 0;
+    }
+
+    .feature-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .feature-card{
+      display:flex; gap:22px;
+      background: var(--mint-tint);
+      border: 1px solid rgba(27,106,80,.12);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .feature-card:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      background: #E4F2EA;
+    }
+    .feature-icon{
+      flex:0 0 auto; width:64px; height:64px;
+      border-radius: 16px;
+      background:#fff;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 6px 16px -8px rgba(15,61,46,.35);
+    }
+    .feature-icon img{ width:36px; height:36px; }
+    .feature-card h5{
+      font-family: var(--font-body);
+      color: var(--forest-2); font-size:19px; font-weight:700;
+      letter-spacing:-.2px; margin-bottom:8px;
+    }
+    .feature-card p{ margin:0; color: var(--muted); font-size:15px; line-height:1.65; }
+
+    /* ============ Walkthrough ============ */
+    .walkthrough-band{
+      background: linear-gradient(180deg, #FFFFFF 0%, var(--mint-tint) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .timeline{
+      max-width: 880px; margin: 0 auto;
+      display:flex; flex-direction:column; gap:0;
+    }
+    .step{
+      display:grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      padding: 44px 0;
+      position:relative;
+    }
+    .step + .step{ border-top:1px solid var(--line); }
+    .step-num{
+      width:56px; height:56px; border-radius:50%;
+      border: 2px dashed var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family: var(--font-mono); font-weight:600; font-size:17px;
+      color: var(--gold-deep);
+      transform: rotate(-4deg);
+      background:#fff;
+    }
+    .step.is-blocked .step-num{ border-color:#C24E4E; color:#B23B3B; border-style:solid; }
+    .step-body h3{
+      font-size: clamp(20px, 2.6vw, 27px);
+      font-weight:600; line-height:1.3; margin-bottom:10px;
+    }
+    .step-body p{ color: var(--muted); font-size:16px; line-height:1.7; margin:0 0 18px; max-width:640px; }
+    .shot-frame{
+      border-radius: 14px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: 0 16px 34px -18px rgba(20,35,28,.3);
+      background:#fff;
+    }
+    .shot-frame .shot-chrome{
+      display:flex; gap:6px; padding:10px 14px; background:#F1EFE5; border-bottom:1px solid var(--line);
+    }
+    .shot-chrome span{ width:9px; height:9px; border-radius:50%; background:#D8D3C2; }
+    .status-tag{
+      display:inline-flex; align-items:center; gap:6px;
+      font-family: var(--font-mono); font-size:11.5px; font-weight:600;
+      letter-spacing:.05em; text-transform:uppercase;
+      padding:4px 10px; border-radius:999px; margin-bottom:14px;
+    }
+    .status-tag.ok{ background:#E4F2EA; color: var(--forest-2); }
+    .status-tag.stop{ background:#FBE7E7; color:#B23B3B; }
+
+    /* ============ Services ============ */
+    .services{ background: var(--paper); }
+    .services-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:18px;
+    }
+    .service-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      text-align:left;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .service-card:hover{ border-color: var(--sage); transform: translateY(-3px); }
+    .service-icon{
+      width:46px; height:46px; border-radius:12px;
+      background: var(--mint-tint);
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:16px;
+    }
+    .service-icon img{ width:24px; height:24px; }
+    .service-card h4{ font-family: var(--font-body); font-size:16.5px; font-weight:700; margin-bottom:8px; }
+    .service-card p{ font-size:14px; color: var(--muted); line-height:1.6; margin:0; }
+
+    /* ============ Support ============ */
+    .support{
+      background: var(--forest);
+      color:#fff;
+      border-radius: var(--radius-lg);
+      margin: 0 24px;
+      padding: 64px 40px;
+    }
+    .support-inner{ max-width:1120px; margin:0 auto; }
+    .support .section-head h2{ color:#fff; }
+    .support .eyebrow{ color: var(--gold); }
+    .support .eyebrow::before{ background: var(--gold); }
+    .support-grid{
+      display:grid; grid-template-columns: repeat(4,1fr); gap:16px;
+    }
+    .support-item{
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius: 16px;
+      padding: 26px 20px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .support-item i{ font-size:20px; color: var(--gold); }
+    .support-item span{ font-size:14.5px; line-height:1.55; color: rgba(255,255,255,.88); }
+    .support-item a{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+
+    footer{
+      text-align:center;
+      padding: 40px 24px 56px;
+      font-size:13px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+    }
+
+    /* ============ Responsive ============ */
+    @media (max-width: 991px){
+      .hero-grid{ grid-template-columns: 1fr; gap:44px; }
+      .feature-grid{ grid-template-columns: 1fr; }
+      .services-grid{ grid-template-columns: repeat(2,1fr); }
+      .support-grid{ grid-template-columns: repeat(2,1fr); }
+      section{ padding: 64px 0; }
+    }
+    @media (max-width: 640px){
+      .step{ grid-template-columns: 1fr; }
+      .step-num{ margin-bottom:6px; }
+      .services-grid{ grid-template-columns: 1fr; }
+      .support-grid{ grid-template-columns: 1fr; }
+      .support{ margin:0 12px; padding: 44px 22px; }
+      .feature-card{ flex-direction:column; padding:26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ Top bar ============ -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="#top" class="brand">
+        <span class="stamp-dot">OK</span>
+        Product Approval
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#walkthrough">Walkthrough</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#support">Support</a></li>
+      </ul>
+      <a class="nav-cta" href="https://people.infintor.com/contactus" target="_blank">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="main-body" id="top">
+
+    <!-- ============ Hero ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Odoo Product Module</span>
+          <h1><span class="accent">Product Approval Management</span> for Odoo</h1>
+          <p class="lede">
+            Put a proper review step in front of every product before it can be sold, bought, invoiced, or moved.
+            Our Product Approval Management module adds a clear Draft → Under Approval → Approved workflow to the
+            product form. Only designated Product Managers can approve or reject, rejections require a reason,
+            and unapproved products are automatically blocked from Sales, Purchase, Invoicing and Inventory documents.
+          </p>
+          <div class="hero-editions">
+            <span class="edition-pill">Community</span>
+            <span class="edition-pill">Enterprise</span>
+            <span class="edition-pill">Odoo.sh</span>
+          </div>
+        </div>
+
+        <div class="stamp-chain">
+          <div class="stamp-chain-label">Product lifecycle</div>
+          <div class="stamp-steps">
+            <div class="stamp-step">
+              <div class="stamp-badge">DRAFT</div>
+              <div class="txt"><strong>Draft</strong><span>Product just created</span></div>
             </div>
-         </div>
-         </section>
-         <section class="container pt-5">
-            <div class="row pt-5 pb-5" style="background-image: linear-gradient(to right, rgb(207 233 219 / 45%), rgb(239 195 95 / 12%)); border-radius: 30px;">
-               <div class="row_box" style="width:100%; max-width:1000px; margin-left: auto;margin-right: auto;justify-content: center;">
-                  <div class="row pt-5 pb-5">
-                     <h3 class="pb-3 mb-2 col-12" style="font-size:clamp(18px, 4vw, 30px);font-weight:300;line-height: 1.3;text-align:center;color:#C98F2B">
-                       --- HOW IT WORKS ---
-                     </h3>
-                     <h2 class="mb-2 col-12" style="font-size:clamp(26px, 6vw, 44px);font-weight:700;line-height: 1.2;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">Screenshots </span>Walkthrough
-                     </h2>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e">
-                        A complete walk-through of the approval workflow, from configuring the Product Manager role to seeing unapproved products blocked across Purchase, Invoicing and Inventory.
-                     </p>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">1. Configure </span>the Product Manager Role
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        From Settings → Users, set the new Product Approval field to Product Manager for anyone who should be able to approve or reject products.
-                     </p>
-                     <img class="mt-3" src="screenshots/01-configure-approval-role.png" alt="Configuring the Product Manager approval role on a user in Settings" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">2. Create </span>a New Product
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Any new product starts life in Draft. As soon as it's saved, it's automatically submitted and moves to Under Approval.
-                     </p>
-                     <img class="mt-3" src="screenshots/02-new-product-draft.png" alt="Creating a new product in Draft state before submission" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">3. Under Approval </span>Products List
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Product Managers open the dedicated Under Approval Products menu to see every product waiting on a decision, in one filtered list.
-                     </p>
-                     <img class="mt-3" src="screenshots/03-under-approval-list.png" alt="List view of products in the Under Approval state" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">4. Review </span>&amp; Approve a Product
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Opening a product under review shows the Approve, Reject and Reset to Draft buttons, plus a full chatter history of every status change.
-                     </p>
-                     <img class="mt-3" src="screenshots/04-product-under-approval-detail.png" alt="Product form under approval with Approve, Reject and Reset to Draft buttons" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">5. Reject </span>with a Required Reason
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Clicking Reject opens a wizard that won't confirm until a reason is entered, keeping every rejection accountable.
-                     </p>
-                     <img class="mt-3" src="screenshots/05-reject-single-product.png" alt="Reject Product wizard requiring a reject reason for a single product" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">6. Mass Approve </span>&amp; Mass Reject
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Select several products from the list view and use the Actions menu to Mass Approve or Mass Not Approve them all at once.
-                     </p>
-                     <img class="mt-3" src="screenshots/06-mass-actions-menu.png" alt="Actions menu showing Mass Approve and Mass Not Approve for selected products" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">7. Mass Reject </span>Wizard
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Mass Not Approve opens the same wizard listing every selected product, applying one shared reject reason to all of them.
-                     </p>
-                     <img class="mt-3" src="screenshots/07-mass-reject-wizard.png" alt="Reject Product wizard applying one shared reason to multiple selected products" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">8. Blocked </span>on Purchase Orders
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        An unapproved product can't be selected on a Request for Quotation – it simply doesn't appear as an existing product to pick.
-                     </p>
-                     <img class="mt-3" src="screenshots/08-purchase-order-blocked.png" alt="Unapproved product not selectable on a Purchase Order line" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">9. Blocked </span>on Customer Invoices
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        The same protection applies to invoicing – an unapproved product can't be added to a Customer Invoice line either.
-                     </p>
-                     <img class="mt-3" src="screenshots/09-invoice-blocked.png" alt="Unapproved product not selectable on a Customer Invoice line" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-                  <div class="row pt-3 pb-5">
-                     <h3 class="mb-2 col-12" style="font-size:clamp(22px, 5vw, 34px);font-weight:700;line-height: 1.25;text-align:center;color:#171618">
-                        <span style="color:#1B6A50">10. Blocked </span>on Inventory Transfers
-                     </h3>
-                     <p style="font-size:18px;text-align:center;color:#5c5f6e;">
-                        Trying to validate a receipt containing an unapproved product raises a clear Validation Error: only Approved products can be moved in Inventory.
-                     </p>
-                     <img class="mt-3" src="screenshots/10-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt" style="padding: 0px;box-shadow: 0px 0px 10px 0px #9ec6ba75;"/>
-                  </div>
-
-               </div>
+            <div class="stamp-step">
+              <div class="stamp-badge">PENDING</div>
+              <div class="txt"><strong>Under Approval</strong><span>Waiting on a Product Manager</span></div>
             </div>
-         </section>
-         <div class="container services-section text-center py-5 my-5">
-            <h3>Our Services</h3>
-            <div class="services-container row my-3 py-2" style="justify-content: center">
-               <div class="row">
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/custom.png">
-                     <h4>Odoo Implementation</h4>
-                     <p>End-to-end Odoo implementation to meet your business needs.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/implementation.png">
-                     <h4>Odoo Customization</h4>
-                     <p>Custom solutions tailored to your unique requirements.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/customer-service.png">
-                     <h4>Odoo Support & Training</h4>
-                     <p>Comprehensive support and training to enhance your Odoo usage.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/hired.png">
-                     <h4>Hire an Odoo Developer</h4>
-                     <p>Get access to skilled Odoo developers for your project needs.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/technology.png">
-                     <h4>Odoo Integration</h4>
-                     <p>Integrate Odoo seamlessly with third-party apps and systems.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/cloud-server.png">
-                     <h4>Odoo Hosting & Cloud</h4>
-                     <p>Secure and scalable Odoo hosting solutions.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/schedule.png">
-                     <h4>Odoo Maintenance</h4>
-                     <p>Ensure smooth and uninterrupted operations.</p>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6 feature-item p-1">
-                  <div class="box" style="padding:15px; background-color:#F6FAF7;">
-                     <img class="img img-responsive mx-4 my-4" alt="not found" width="55" height="55" src="./images/consultant.png">
-                     <h4>Odoo Consulting</h4>
-                     <p>Expert consulting to help you leverage Odoo for maximum efficiency.</p>
-                  </div>
-               </div>
+            <div class="stamp-step">
+              <div class="stamp-badge">APPROVED</div>
+              <div class="txt"><strong>Approved</strong><span>Unlocked across all documents</span></div>
             </div>
-         </div>
-         <div class="support-section support-section text-center pb-5">
-            <h3>Support &amp; Demo</h3>
-            <div class="support-content" style="display: inline-block; text-align: center;">
-               <div class="support-item" style="padding:10px 30px; margin:2px; background-color: #F6FAF7; width:100%; max-width:500px; box-sizing:border-box;">
-                  <i class="fas fa-shield-alt"></i>
-                  <span>90 Days Free Support Available</span>
-               </div>
-               <div class="support-item" style="padding: 10px 30px; margin: 2px; background-color: #F6FAF7; width:100%; max-width:500px; box-sizing:border-box;">
-                  <i class="fas fa-ticket-alt"></i>
-                  <span>Create a support ticket <a href="https://people.infintor.com/contactus" target="_blank">people.infintor.com/contactus</a> </span>
-               </div>
-               <div class="support-item" style="padding: 10px 30px; margin: 2px; background-color: #F6FAF7; width:100%; max-width:500px; box-sizing:border-box;">
-                  <i class="fas fa-envelope"></i>
-                  <span>Send an email to <a href="mailto:odoo@infintor.com">odoo@infintor.com</a></span>
-               </div>
-               <div class="support-item" style="padding: 10px 30px; margin: 2px; background-color: #F6FAF7; width:100%; max-width:500px; box-sizing:border-box;">
-                  <i class="fas fa-globe"></i>
-                  <span>Visit <a href="https://www.infintor.com" target="_blank">www.infintor.com</a></span>
-               </div>
-            </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </body>
+    </section>
+
+    <!-- ============ Features ============ -->
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Why it works</span>
+          <h2><span class="accent">Key Features</span> of Product Approval Management</h2>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-auto-submission.svg"></div>
+            <div>
+              <h5>Automatic Approval Submission</h5>
+              <p>Every new product is routed to Under Approval the moment it's saved – no separate "send for approval" step to remember, and no product slips through as an untracked Draft.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-server-protected.svg"></div>
+            <div>
+              <h5>Server-Side Protected Approvals</h5>
+              <p>Approve and Reject are guarded on the server, not just hidden in the UI. Even a call from developer mode outside the Product Manager group is refused, with a clear error message.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-group-config.svg"></div>
+            <div>
+              <h5>Configurable Approval Group</h5>
+              <p>A dedicated Product Manager access group decides who can approve. Assign it to exactly the people responsible for sign-off from Settings → Users, in a couple of clicks.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-mass-actions.svg"></div>
+            <div>
+              <h5>Mass Approve &amp; Mass Reject</h5>
+              <p>Clear a backlog of pending products in two clicks. Select several from the list view and approve them together, or reject them all with one shared reason.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-role-based.svg"></div>
+            <div>
+              <h5>Role-Based Approve &amp; Reject</h5>
+              <p>Only Product Managers ever see the Approve, Reject and Reset to Draft buttons. Everyone else keeps creating and editing products exactly as before.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-reject-reason.svg"></div>
+            <div>
+              <h5>Mandatory Reject Reasons</h5>
+              <p>Rejecting opens a wizard that won't confirm without a reason. That reason is then pinned to the product as a persistent red banner, so nobody has to ask why.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-chatter-notify.svg"></div>
+            <div>
+              <h5>Chatter &amp; Notification Alerts</h5>
+              <p>Submission, approval and rejection are all logged to the chatter and pushed as a notification – to every Product Manager on submission, and to the creator on the outcome.</p>
+            </div>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><img alt="" src="./images/approval-enforced-everywhere.svg"></div>
+            <div>
+              <h5>Enforced Everywhere</h5>
+              <p>Unapproved products simply don't appear in Sales Orders, Purchase Orders, Invoices, Vendor Bills, or Inventory transfers – including receipts, deliveries, returns and scraps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Walkthrough ============ -->
+    <section id="walkthrough" class="walkthrough-band">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2><span class="accent">Screenshots</span> Walkthrough</h2>
+          <p class="lede" style="margin-top:14px;">
+            A complete walk-through of the approval workflow, from configuring the Product Manager role to seeing
+            unapproved products blocked across Purchase, Invoicing and Inventory.
+          </p>
+        </div>
+
+        <div class="timeline">
+
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h3><span class="accent">Configure</span> the Product Manager Role</h3>
+              <p>From Settings → Users, set the new Product Approval field to Product Manager for anyone who should be able to approve or reject products.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/01-configure-approval-role.png" alt="Configuring the Product Manager approval role on a user in Settings"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h3><span class="accent">Create</span> a New Product</h3>
+              <p>Any new product starts life in Draft. As soon as it's saved, it's automatically submitted and moves to Under Approval.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/02-new-product-draft.png" alt="Creating a new product in Draft state before submission"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h3><span class="accent">Under Approval</span> Products List</h3>
+              <p>Product Managers open the dedicated Under Approval Products menu to see every product waiting on a decision, in one filtered list.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/03-under-approval-list.png" alt="List view of products in the Under Approval state"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h3><span class="accent">Review</span> &amp; Approve a Product</h3>
+              <p>Opening a product under review shows the Approve, Reject and Reset to Draft buttons, plus a full chatter history of every status change.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/04-product-under-approval-detail.png" alt="Product form under approval with Approve, Reject and Reset to Draft buttons"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h3><span class="accent">Reject</span> with a Required Reason</h3>
+              <p>Clicking Reject opens a wizard that won't confirm until a reason is entered, keeping every rejection accountable.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/05-reject-single-product.png" alt="Reject Product wizard requiring a reject reason for a single product"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">6</div>
+            <div class="step-body">
+              <h3><span class="accent">Mass Approve</span> &amp; Mass Reject</h3>
+              <p>Select several products from the list view and use the Actions menu to Mass Approve or Mass Not Approve them all at once.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/06-mass-actions-menu.png" alt="Actions menu showing Mass Approve and Mass Not Approve for selected products"></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">7</div>
+            <div class="step-body">
+              <h3><span class="accent">Mass Reject</span> Wizard</h3>
+              <p>Mass Not Approve opens the same wizard listing every selected product, applying one shared reject reason to all of them.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/07-mass-reject-wizard.png" alt="Reject Product wizard applying one shared reason to multiple selected products"></div>
+            </div>
+          </div>
+
+          <div class="step is-blocked">
+            <div class="step-num">8</div>
+            <div class="step-body">
+              <span class="status-tag stop">Blocked</span>
+              <h3>Blocked on Purchase Orders</h3>
+              <p>Trying to save a Request for Quotation with an unapproved product raises a clear Validation Error: only Approved products can be added to a purchase order.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/08-purchase-order-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Purchase Order"></div>
+            </div>
+          </div>
+
+          <div class="step is-blocked">
+            <div class="step-num">9</div>
+            <div class="step-body">
+              <span class="status-tag stop">Blocked</span>
+              <h3>Blocked on Customer Invoices</h3>
+              <p>The same protection applies to invoicing: trying to confirm a Customer Invoice with an unapproved product raises a Validation Error listing every unapproved line.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/09-invoice-validation-error.png" alt="Validation Error blocking unapproved products from being used on a Customer Invoice"></div>
+            </div>
+          </div>
+
+          <div class="step is-blocked">
+            <div class="step-num">10</div>
+            <div class="step-body">
+              <span class="status-tag stop">Blocked</span>
+              <h3>Blocked on Sales Quotations</h3>
+              <p>Sales is covered too: adding an unapproved product to a Quotation raises the same Validation Error before it can be sent or confirmed.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/10-sales-qutation-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Sales Quotation"></div>
+            </div>
+          </div>
+
+          <div class="step is-blocked">
+            <div class="step-num">11</div>
+            <div class="step-body">
+              <span class="status-tag stop">Blocked</span>
+              <h3>Blocked on Inventory Transfers</h3>
+              <p>Trying to validate a receipt containing an unapproved product raises a clear Validation Error: only Approved products can be moved in Inventory.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/11-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Services ============ -->
+    <section id="services" class="services">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow">Beyond the module</span>
+          <h2><span class="accent">Our</span> Services</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/custom.png"></div>
+            <h4>Odoo Implementation</h4>
+            <p>End-to-end Odoo implementation to meet your business needs.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/implementation.png"></div>
+            <h4>Odoo Customization</h4>
+            <p>Custom solutions tailored to your unique requirements.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/customer-service.png"></div>
+            <h4>Odoo Support &amp; Training</h4>
+            <p>Comprehensive support and training to enhance your Odoo usage.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/hired.png"></div>
+            <h4>Hire an Odoo Developer</h4>
+            <p>Get access to skilled Odoo developers for your project needs.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/technology.png"></div>
+            <h4>Odoo Integration</h4>
+            <p>Integrate Odoo seamlessly with third-party apps and systems.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/cloud-server.png"></div>
+            <h4>Odoo Hosting &amp; Cloud</h4>
+            <p>Secure and scalable Odoo hosting solutions.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/schedule.png"></div>
+            <h4>Odoo Maintenance</h4>
+            <p>Ensure smooth and uninterrupted operations.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon"><img alt="" src="./images/consultant.png"></div>
+            <h4>Odoo Consulting</h4>
+            <p>Expert consulting to help you leverage Odoo for maximum efficiency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Support ============ -->
+    <section id="support" style="padding-top:0;">
+      <div class="support">
+        <div class="support-inner">
+          <div class="section-head" style="margin-bottom:40px;">
+            <span class="eyebrow">We've got you</span>
+            <h2>Support &amp; Demo</h2>
+          </div>
+          <div class="support-grid">
+            <div class="support-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>90 days of free support included with every purchase</span>
+            </div>
+            <div class="support-item">
+              <i class="fas fa-ticket-alt"></i>
+              <span>Create a support ticket at <a href="https://people.infintor.com/contactus" target="_blank">people.infintor.com/contactus</a></span>
+            </div>
+            <div class="support-item">
+              <i class="fas fa-envelope"></i>
+              <span>Send an email to <a href="mailto:odoo@infintor.com">odoo@infintor.com</a></span>
+            </div>
+            <div class="support-item">
+              <i class="fas fa-globe"></i>
+              <span>Visit <a href="https://www.infintor.com" target="_blank">www.infintor.com</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>Product Approval Management for Odoo — by Infintor</footer>
+
+  </div>
+</body>
 </html>

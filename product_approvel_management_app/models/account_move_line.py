@@ -9,12 +9,15 @@ class AccountMoveLine(models.Model):
     @api.constrains('product_id')
     def _check_product_is_approved(self):
         invoice_types = ('out_invoice', 'out_refund', 'in_invoice', 'in_refund')
-        for line in self:
-            if (line.display_type in (False, 'product')
-                    and line.move_id.move_type in invoice_types
-                    and line.product_id
-                    and line.product_id.state != 'approved'):
-                raise ValidationError(_(
-                    'The product "%s" has not been approved yet. Only '
-                    'Approved products can be used on an invoice or bill.'
-                ) % line.product_id.display_name)
+        unapproved = self.filtered(
+            lambda l: l.display_type in (False, 'product')
+            and l.move_id.move_type in invoice_types
+            and l.product_id
+            and l.product_id.state != 'approved'
+        ).mapped('product_id')
+        if unapproved:
+            names = '\n'.join('- %s' % p.display_name for p in unapproved)
+            raise ValidationError(_(
+                'The following product(s) have not been approved yet. Only '
+                'Approved products can be used on an invoice or bill:\n%s'
+            ) % names)

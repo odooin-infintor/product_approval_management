@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Product Approval Management',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Inventory/Inventory',
     'summary': 'Approve or reject products before they can be used anywhere in Odoo.',
     'description': """
@@ -51,10 +51,6 @@
         'security/ir.model.access.csv',
         'wizard/product_approval_reject_wizard_views.xml',
         'views/product_template_views.xml',
-        'views/sale_order_views.xml',
-        'views/purchase_order_views.xml',
-        'views/account_move_views.xml',
-        'views/stock_picking_views.xml',
         'views/product_approval_menus.xml',
         'data/server_actions.xml',
     ],

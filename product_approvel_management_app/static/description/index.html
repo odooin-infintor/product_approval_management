@@ -132,7 +132,7 @@
     .hero-grid{
       position:relative;
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: 1.05fr .95fr;
       gap: 56px;
       align-items:center;
     }
@@ -202,7 +202,7 @@
 
     .feature-grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
     .feature-card{
@@ -290,7 +290,7 @@
     .services{ background: var(--paper); }
     .services-grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap:18px;
     }
     .service-card{
@@ -325,7 +325,7 @@
     .support .eyebrow{ color: var(--gold); }
     .support .eyebrow::before{ background: var(--gold); }
     .support-grid{
-      display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:16px;
+      display:grid; grid-template-columns: repeat(4,1fr); gap:16px;
     }
     .support-item{
       background: rgba(255,255,255,.06);
@@ -589,9 +589,9 @@
             <div class="step-body">
               <span class="status-tag stop">Blocked</span>
               <h3>Blocked on Purchase Orders</h3>
-              <p>An unapproved product can't be selected on a Request for Quotation – it simply doesn't appear as an existing product to pick.</p>
+              <p>Trying to save a Request for Quotation with an unapproved product raises a clear Validation Error: only Approved products can be added to a purchase order.</p>
               <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/08-purchase-order-blocked.png" alt="Unapproved product not selectable on a Purchase Order line"></div>
+                <img src="screenshots/08-purchase-order-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Purchase Order"></div>
             </div>
           </div>
 
@@ -600,9 +600,9 @@
             <div class="step-body">
               <span class="status-tag stop">Blocked</span>
               <h3>Blocked on Customer Invoices</h3>
-              <p>The same protection applies to invoicing – an unapproved product can't be added to a Customer Invoice line either.</p>
+              <p>The same protection applies to invoicing: trying to confirm a Customer Invoice with an unapproved product raises a Validation Error listing every unapproved line.</p>
               <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/09-invoice-blocked.png" alt="Unapproved product not selectable on a Customer Invoice line"></div>
+                <img src="screenshots/09-invoice-validation-error.png" alt="Validation Error blocking unapproved products from being used on a Customer Invoice"></div>
             </div>
           </div>
 
@@ -610,10 +610,21 @@
             <div class="step-num">10</div>
             <div class="step-body">
               <span class="status-tag stop">Blocked</span>
+              <h3>Blocked on Sales Quotations</h3>
+              <p>Sales is covered too: adding an unapproved product to a Quotation raises the same Validation Error before it can be sent or confirmed.</p>
+              <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
+                <img src="screenshots/10-sales-qutation-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Sales Quotation"></div>
+            </div>
+          </div>
+
+          <div class="step is-blocked">
+            <div class="step-num">11</div>
+            <div class="step-body">
+              <span class="status-tag stop">Blocked</span>
               <h3>Blocked on Inventory Transfers</h3>
               <p>Trying to validate a receipt containing an unapproved product raises a clear Validation Error: only Approved products can be moved in Inventory.</p>
               <div class="shot-frame"><div class="shot-chrome"><span></span><span></span><span></span></div>
-                <img src="screenshots/10-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt"></div>
+                <img src="screenshots/11-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt"></div>
             </div>
           </div>
 

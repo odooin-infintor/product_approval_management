@@ -3,74 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product Approval Management for Odoo</title>
-<style>
-  /* ---- Base fixes so nothing overflows the viewport (same fix pattern as working-index.html) ---- */
-  * { box-sizing: border-box; }
-  html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  img { max-width: 100%; height: auto; }
-
-  /* ---- Responsive typography & spacing ---- */
-  @media (max-width: 900px) {
-    .header-row { padding: 14px 16px !important; }
-    .nav-links { display: none !important; }
-    .section-wrap { padding-left: 16px !important; padding-right: 16px !important; }
-    .hero-wrap { padding: 40px 16px 28px !important; }
-    .hero-row { gap: 32px !important; }
-    .hero-title { font-size: 30px !important; }
-    .section-title { font-size: 26px !important; }
-    .lifecycle-card { padding: 28px 20px !important; }
-    .card-feature { padding: 24px !important; flex-basis: 100% !important; }
-    .card-service { flex-basis: 100% !important; }
-    .card-support { flex-basis: 100% !important; }
-    .step-row { gap: 16px !important; padding: 24px 0 !important; }
-    .support-panel { padding: 36px 20px !important; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-title { font-size: 25px !important; }
-    .section-title { font-size: 21px !important; }
-    .step-row { flex-direction: column !important; }
-  }
-</style>
+<title>Local preview — approximates apps.odoo.com rendering</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0;}</style>
 </head>
 <body>
-<div style="font-family:Arial,Helvetica,sans-serif;background:#F7F5EE;color:#14231C;margin:0;padding:0;">
+<!-- Product Approval Management for Odoo — description page
+     Written to survive apps.odoo.com's HTML sanitizer:
+     - no <style>/<head>/<body> (Odoo injects this as a fragment)
+     - hex colors only (no rgba, no gradients)
+     - no inline box-shadow
+     - no inline align-items / justify-content / flex-wrap / gap (use Bootstrap classes instead)
+     - external links left as <a> (Odoo auto-converts them to <span>; mailto: links stay clickable) -->
 
-  <!-- ============ Top bar ============ -->
-  <div class="site-header" style="background:#F7F5EE;border-bottom:1px solid #DEDACB;">
-    <div class="header-row" style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1180px;margin:0 auto;flex-wrap:wrap;gap:14px;">
-      <a href="#top" style="display:flex;align-items:center;gap:10px;font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:19px;text-decoration:none;color:#14231C;">
-        <span style="width:30px;height:30px;border-radius:50%;border:1.5px solid #0F3D2E;display:inline-flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:12px;font-weight:600;color:#0F3D2E;">OK</span>
-        Product Approval
-      </a>
-      <ul class="nav-links" style="display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap;">
-        <li><a href="#features" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Features</a></li>
-        <li><a href="#walkthrough" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Walkthrough</a></li>
-        <li><a href="#services" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Services</a></li>
-        <li><a href="#support" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Support</a></li>
-      </ul>
-      <a href="https://people.infintor.com/contactus" target="_blank" style="font-family:'Courier New',monospace;font-size:13px;font-weight:600;letter-spacing:.03em;text-decoration:none;background:#0F3D2E;color:#ffffff;padding:10px 20px;border-radius:999px;white-space:nowrap;display:inline-block;">Get in touch</a>
-    </div>
+<!-- ============ Top bar ============ -->
+<section>
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-3" style="max-width:1180px;margin:0 auto;padding:16px 24px;background-color:#F7F5EE;border-bottom:1px solid #DEDACB;">
+    <a href="#top" class="d-flex align-items-center gap-2" style="font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:19px;text-decoration:none;color:#14231C;">
+      <span class="d-inline-flex align-items-center justify-content-center" style="width:30px;height:30px;border-radius:50%;border:1.5px solid #0F3D2E;font-family:'Courier New',monospace;font-size:12px;font-weight:600;color:#0F3D2E;">OK</span>
+      Product Approval
+    </a>
+    <ul class="d-flex flex-wrap gap-4 list-unstyled" style="margin:0;padding:0;">
+      <li><a href="#features" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Features</a></li>
+      <li><a href="#walkthrough" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Walkthrough</a></li>
+      <li><a href="#services" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Services</a></li>
+      <li><a href="#support" style="text-decoration:none;font-size:14.5px;font-weight:500;color:#5B6961;">Support</a></li>
+    </ul>
+    <a href="mailto:odoo@infintor.com" style="font-family:'Courier New',monospace;font-size:13px;font-weight:600;letter-spacing:.03em;text-decoration:none;background-color:#0F3D2E;color:#ffffff;padding:10px 20px;border-radius:999px;white-space:nowrap;display:inline-block;">Get in touch</a>
   </div>
+</section>
 
-  <div id="top">
+<div id="top">
 
-    <!-- ============ Hero ============ -->
-    <div class="section-wrap hero-wrap" style="max-width:1180px;margin:0 auto;padding:64px 24px 40px;">
-      <div class="hero-row" style="display:flex;flex-wrap:wrap;gap:56px;align-items:center;">
+  <!-- ============ Hero ============ -->
+  <section>
+    <div class="container" style="max-width:1180px;padding:64px 24px 40px;">
+      <div class="row align-items-center g-5">
 
-        <div style="flex:1 1 460px;">
-          <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
-            <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
+        <div class="col-md-6">
+          <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;">
+            <span style="width:26px;height:1px;background-color:#93641A;display:inline-block;"></span>
             Odoo Product Module
           </span>
-          <h1 class="hero-title" style="font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:18px 0 20px;color:#14231C;">
+          <h1 style="font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:600;line-height:1.15;letter-spacing:-.01em;margin:18px 0 20px;color:#14231C;">
             <span style="color:#1B6A50;font-style:italic;">Product Approval Management</span> for Odoo
           </h1>
           <p style="color:#5B6961;font-size:17px;line-height:1.7;margin:0;">
@@ -79,366 +54,408 @@
             product form. Only designated Product Managers can approve or reject, rejections require a reason,
             and unapproved products are automatically blocked from Sales, Purchase, Invoicing and Inventory documents.
           </p>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;">
+          <div class="d-flex flex-wrap gap-2" style="margin-top:28px;">
             <span style="font-family:'Courier New',monospace;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#0F3D2E;border:1px solid #0F3D2E;border-radius:999px;padding:8px 18px;display:inline-block;">Community</span>
             <span style="font-family:'Courier New',monospace;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#0F3D2E;border:1px solid #0F3D2E;border-radius:999px;padding:8px 18px;display:inline-block;">Enterprise</span>
             <span style="font-family:'Courier New',monospace;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:#0F3D2E;border:1px solid #0F3D2E;border-radius:999px;padding:8px 18px;display:inline-block;">Odoo.sh</span>
           </div>
         </div>
 
-        <div class="lifecycle-card" style="flex:1 1 380px;background:linear-gradient(165deg,#0F3D2E 0%,#0B2E22 100%);border-radius:26px;padding:40px 30px;box-shadow:0 20px 45px -20px rgba(15,61,46,.28);color:#ffffff;">
-          <div style="font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:26px;">Product lifecycle</div>
-          <div>
-            <div style="display:flex;align-items:center;gap:16px;padding:14px 0;">
-              <div style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:11px;font-weight:600;text-align:center;line-height:1.15;border:2px solid #C8CFCB;color:#C8CFCB;flex:0 0 auto;">DRAFT</div>
-              <div><strong style="display:block;font-size:15.5px;font-weight:600;">Draft</strong><span style="font-size:13px;color:rgba(255,255,255,.6);">Product just created</span></div>
+        <div class="col-md-6">
+          <div style="background-color:#0F3D2E;border-radius:26px;padding:40px 30px;color:#ffffff;">
+            <div style="font-family:'Courier New',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#8FB3A4;margin-bottom:26px;">Product lifecycle</div>
+            <div class="d-flex align-items-center gap-3" style="padding:14px 0;">
+              <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:52px;height:52px;border-radius:50%;font-family:'Courier New',monospace;font-size:11px;font-weight:600;text-align:center;line-height:1.15;border:2px solid #C8CFCB;color:#C8CFCB;">DRAFT</div>
+              <div><strong style="display:block;font-size:15.5px;font-weight:600;">Draft</strong><span style="font-size:13px;color:#9DB0A6;">Product just created</span></div>
             </div>
-            <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px dashed rgba(255,255,255,.16);">
-              <div style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:11px;font-weight:600;text-align:center;line-height:1.15;border:2px solid #C98F2B;color:#C98F2B;flex:0 0 auto;">PENDING</div>
-              <div><strong style="display:block;font-size:15.5px;font-weight:600;">Under Approval</strong><span style="font-size:13px;color:rgba(255,255,255,.6);">Waiting on a Product Manager</span></div>
+            <div class="d-flex align-items-center gap-3" style="padding:14px 0;border-top:1px dashed #235A46;">
+              <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:52px;height:52px;border-radius:50%;font-family:'Courier New',monospace;font-size:11px;font-weight:600;text-align:center;line-height:1.15;border:2px solid #C98F2B;color:#C98F2B;">PENDING</div>
+              <div><strong style="display:block;font-size:15.5px;font-weight:600;">Under Approval</strong><span style="font-size:13px;color:#9DB0A6;">Waiting on a Product Manager</span></div>
             </div>
-            <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-top:1px dashed rgba(255,255,255,.16);">
-              <div style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-size:11px;font-weight:600;text-align:center;line-height:1.15;border:2px solid #7FE0B5;color:#7FE0B5;flex:0 0 auto;">APPROVED</div>
-              <div><strong style="display:block;font-size:15.5px;font-weight:600;">Approved</strong><span style="font-size:13px;color:rgba(255,255,255,.6);">Unlocked across all documents</span></div>
+            <div class="d-flex align-items-center gap-3" style="padding:14px 0;border-top:1px dashed #235A46;">
+              <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:52px;height:52px;border-radius:50%;font-family:'Courier New',monospace;font-size:11px;font-weight:600;text-align:center;line-height:1.15;border:2px solid #7FE0B5;color:#7FE0B5;">APPROVED</div>
+              <div><strong style="display:block;font-size:15.5px;font-weight:600;">Approved</strong><span style="font-size:13px;color:#9DB0A6;">Unlocked across all documents</span></div>
             </div>
           </div>
         </div>
 
       </div>
     </div>
+  </section>
 
-    <!-- ============ Features ============ -->
-    <div id="features" class="section-wrap" style="max-width:1180px;margin:0 auto;padding:72px 24px;">
-      <div style="text-align:center;max-width:760px;margin:0 auto 48px;">
-        <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
-          <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
+  <!-- ============ Features ============ -->
+  <section id="features" style="background-color:#F7F5EE;">
+    <div class="container" style="max-width:1180px;padding:72px 24px;">
+      <div class="text-center" style="max-width:760px;margin:0 auto 48px;">
+        <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;">
+          <span style="width:26px;height:1px;background-color:#93641A;display:inline-block;"></span>
           Why it works
         </span>
-        <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
+        <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
           <span style="color:#1B6A50;font-style:italic;">Key Features</span> of Product Approval Management
         </h2>
       </div>
 
-      <div style="display:flex;flex-wrap:wrap;gap:20px;">
+      <div class="row g-3">
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-auto-submission.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Automatic Approval Submission</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Every new product is routed to Under Approval the moment it's saved &ndash; no separate "send for approval" step to remember, and no product slips through as an untracked Draft.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-auto-submission.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Automatic Approval Submission</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Every new product is routed to Under Approval the moment it's saved &ndash; no separate "send for approval" step to remember, and no product slips through as an untracked Draft.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-server-protected.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Server-Side Protected Approvals</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Approve and Reject are guarded on the server, not just hidden in the UI. Even a call from developer mode outside the Product Manager group is refused, with a clear error message.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-server-protected.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Server-Side Protected Approvals</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Approve and Reject are guarded on the server, not just hidden in the UI. Even a call from developer mode outside the Product Manager group is refused, with a clear error message.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-group-config.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Configurable Approval Group</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">A dedicated Product Manager access group decides who can approve. Assign it to exactly the people responsible for sign-off from Settings &rarr; Users, in a couple of clicks.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-group-config.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Configurable Approval Group</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">A dedicated Product Manager access group decides who can approve. Assign it to exactly the people responsible for sign-off from Settings &rarr; Users, in a couple of clicks.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-mass-actions.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Mass Approve &amp; Mass Reject</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Clear a backlog of pending products in two clicks. Select several from the list view and approve them together, or reject them all with one shared reason.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-mass-actions.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Mass Approve &amp; Mass Reject</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Clear a backlog of pending products in two clicks. Select several from the list view and approve them together, or reject them all with one shared reason.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-role-based.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Role-Based Approve &amp; Reject</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Only Product Managers ever see the Approve, Reject and Reset to Draft buttons. Everyone else keeps creating and editing products exactly as before.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-role-based.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Role-Based Approve &amp; Reject</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Only Product Managers ever see the Approve, Reject and Reset to Draft buttons. Everyone else keeps creating and editing products exactly as before.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-reject-reason.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Mandatory Reject Reasons</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Rejecting opens a wizard that won't confirm without a reason. That reason is then pinned to the product as a persistent red banner, so nobody has to ask why.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-reject-reason.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Mandatory Reject Reasons</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Rejecting opens a wizard that won't confirm without a reason. That reason is then pinned to the product as a persistent red banner, so nobody has to ask why.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-chatter-notify.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Chatter &amp; Notification Alerts</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Submission, approval and rejection are all logged to the chatter and pushed as a notification &ndash; to every Product Manager on submission, and to the creator on the outcome.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-chatter-notify.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Chatter &amp; Notification Alerts</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Submission, approval and rejection are all logged to the chatter and pushed as a notification &ndash; to every Product Manager on submission, and to the creator on the outcome.</p>
+            </div>
           </div>
         </div>
 
-        <div class="card-feature" style="flex:1 1 420px;display:flex;gap:22px;background:rgba(207,233,219,0.25);border:1px solid rgba(27,106,80,.12);border-radius:18px;padding:32px;">
-          <div style="flex:0 0 auto;width:64px;height:64px;border-radius:16px;background:#ffffff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -8px rgba(15,61,46,.35);"><img alt="" src="./images/approval-enforced-everywhere.svg" style="width:36px;height:36px;display:block;"></div>
-          <div>
-            <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Enforced Everywhere</h5>
-            <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Unapproved products simply don't appear in Sales Orders, Purchase Orders, Invoices, Vendor Bills, or Inventory transfers &ndash; including receipts, deliveries, returns and scraps.</p>
+        <div class="col-md-6">
+          <div class="d-flex gap-3 h-100" style="background-color:#EAF3EC;border:1px solid #DCEEE3;border-radius:18px;padding:32px;">
+            <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:64px;height:64px;border-radius:16px;background-color:#ffffff;"><img alt="" src="./images/approval-enforced-everywhere.svg" style="width:36px;height:36px;display:block;"></div>
+            <div>
+              <h5 style="font-family:Arial,sans-serif;color:#14513F;font-size:18px;font-weight:700;letter-spacing:-.2px;margin:0 0 8px;">Enforced Everywhere</h5>
+              <p style="margin:0;color:#5B6961;font-size:15px;line-height:1.65;">Unapproved products simply don't appear in Sales Orders, Purchase Orders, Invoices, Vendor Bills, or Inventory transfers &ndash; including receipts, deliveries, returns and scraps.</p>
+            </div>
           </div>
         </div>
 
       </div>
     </div>
+  </section>
 
-    <!-- ============ Walkthrough ============ -->
-    <div id="walkthrough" style="background:linear-gradient(180deg,#FFFFFF 0%,rgba(207,233,219,0.25) 100%);border-top:1px solid #DEDACB;border-bottom:1px solid #DEDACB;padding:72px 0;">
-      <div class="section-wrap" style="max-width:1180px;margin:0 auto;padding:0 24px;">
-        <div style="text-align:center;max-width:760px;margin:0 auto 48px;">
-          <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
-            <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
-            How it works
-          </span>
-          <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
-            <span style="color:#1B6A50;font-style:italic;">Screenshots</span> Walkthrough
-          </h2>
-          <p style="color:#5B6961;font-size:17px;line-height:1.7;margin-top:14px;">
-            A complete walk-through of the approval workflow, from configuring the Product Manager role to seeing
-            unapproved products blocked across Purchase, Invoicing and Inventory.
-          </p>
+  <!-- ============ Walkthrough ============ -->
+  <section id="walkthrough" style="background-color:#F3FAF6;border-top:1px solid #DEDACB;border-bottom:1px solid #DEDACB;padding:72px 0;">
+    <div class="container" style="max-width:1180px;padding:0 24px;">
+      <div class="text-center" style="max-width:760px;margin:0 auto 48px;">
+        <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;">
+          <span style="width:26px;height:1px;background-color:#93641A;display:inline-block;"></span>
+          How it works
+        </span>
+        <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;">
+          <span style="color:#1B6A50;font-style:italic;">Screenshots</span> Walkthrough
+        </h2>
+        <p style="color:#5B6961;font-size:17px;line-height:1.7;margin-top:14px;">
+          A complete walk-through of the approval workflow, from configuring the Product Manager role to seeing
+          unapproved products blocked across Purchase, Invoicing and Inventory.
+        </p>
+      </div>
+
+      <div style="max-width:880px;margin:0 auto;">
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">1</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Configure</span> the Product Manager Role</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">From Settings &rarr; Users, set the new Product Approval field to Product Manager for anyone who should be able to approve or reject products.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/01-configure-approval-role.png" alt="Configuring the Product Manager approval role on a user in Settings" style="width:100%;display:block;">
+            </div>
+          </div>
         </div>
 
-        <div style="max-width:880px;margin:0 auto;">
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">1</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Configure</span> the Product Manager Role</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">From Settings &rarr; Users, set the new Product Approval field to Product Manager for anyone who should be able to approve or reject products.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/01-configure-approval-role.png" alt="Configuring the Product Manager approval role on a user in Settings" style="width:100%;display:block;">
-              </div>
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">2</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Create</span> a New Product</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Any new product starts life in Draft. As soon as it's saved, it's automatically submitted and moves to Under Approval.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/02-new-product-draft.png" alt="Creating a new product in Draft state before submission" style="width:100%;display:block;">
             </div>
           </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">2</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Create</span> a New Product</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Any new product starts life in Draft. As soon as it's saved, it's automatically submitted and moves to Under Approval.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/02-new-product-draft.png" alt="Creating a new product in Draft state before submission" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">3</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Under Approval</span> Products List</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Product Managers open the dedicated Under Approval Products menu to see every product waiting on a decision, in one filtered list.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/03-under-approval-list.png" alt="List view of products in the Under Approval state" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">4</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Review</span> &amp; Approve a Product</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Opening a product under review shows the Approve, Reject and Reset to Draft buttons, plus a full chatter history of every status change.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/04-product-under-approval-detail.png" alt="Product form under approval with Approve, Reject and Reset to Draft buttons" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">5</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Reject</span> with a Required Reason</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Clicking Reject opens a wizard that won't confirm until a reason is entered, keeping every rejection accountable.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/05-reject-single-product.png" alt="Reject Product wizard requiring a reject reason for a single product" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">6</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Mass Approve</span> &amp; Mass Reject</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Select several products from the list view and use the Actions menu to Mass Approve or Mass Not Approve them all at once.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/06-mass-actions-menu.png" alt="Actions menu showing Mass Approve and Mass Not Approve for selected products" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background:#ffffff;flex:0 0 auto;">7</div>
-            <div>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Mass Reject</span> Wizard</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Mass Not Approve opens the same wizard listing every selected product, applying one shared reject reason to all of them.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/07-mass-reject-wizard.png" alt="Reject Product wizard applying one shared reason to multiple selected products" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">8</div>
-            <div>
-              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Purchase Orders</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Trying to save a Request for Quotation with an unapproved product raises a clear Validation Error: only Approved products can be added to a purchase order.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/08-purchase-order-validation-error.png" alt="Unapproved product not selectable on a Purchase Order line" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">9</div>
-            <div>
-              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Customer Invoices</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">The same protection applies to invoicing: trying to confirm a Customer Invoice with an unapproved product raises a Validation Error listing every unapproved line.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/09-invoice-validation-error.png" alt="Unapproved product not selectable on a Customer Invoice line" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">10</div>
-            <div>
-              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Sales Quotations</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Sales is covered too: adding an unapproved product to a Quotation raises the same Validation Error before it can be sent or confirmed.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/10-sales-qutation-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-           <div class="step-row" style="display:flex;gap:24px;padding:36px 0;border-top:1px solid #DEDACB;">
-            <div style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;display:flex;align-items:center;justify-content:center;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background:#ffffff;flex:0 0 auto;">10</div>
-            <div>
-              <span style="display:inline-flex;align-items:center;gap:6px;font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background:#FBE7E7;color:#B23B3B;">Blocked</span>
-              <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Inventory Transfers</h3>
-              <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Trying to validate a receipt containing an unapproved product raises a clear Validation Error: only Approved products can be moved in Inventory.</p>
-              <div style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;box-shadow:0 16px 34px -18px rgba(20,35,28,.3);background:#ffffff;">
-                <div style="display:flex;gap:6px;padding:10px 14px;background:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background:#D8D3C2;display:inline-block;"></span></div>
-                <img src="screenshots/11-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">3</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Under Approval</span> Products List</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Product Managers open the dedicated Under Approval Products menu to see every product waiting on a decision, in one filtered list.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/03-under-approval-list.png" alt="List view of products in the Under Approval state" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">4</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Review</span> &amp; Approve a Product</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Opening a product under review shows the Approve, Reject and Reset to Draft buttons, plus a full chatter history of every status change.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/04-product-under-approval-detail.png" alt="Product form under approval with Approve, Reject and Reset to Draft buttons" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">5</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Reject</span> with a Required Reason</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Clicking Reject opens a wizard that won't confirm until a reason is entered, keeping every rejection accountable.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/05-reject-single-product.png" alt="Reject Product wizard requiring a reject reason for a single product" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">6</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Mass Approve</span> &amp; Mass Reject</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Select several products from the list view and use the Actions menu to Mass Approve or Mass Not Approve them all at once.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/06-mass-actions-menu.png" alt="Actions menu showing Mass Approve and Mass Not Approve for selected products" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px dashed #C98F2B;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#93641A;background-color:#ffffff;">7</div>
+          <div>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;"><span style="color:#1B6A50;font-style:italic;">Mass Reject</span> Wizard</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Mass Not Approve opens the same wizard listing every selected product, applying one shared reject reason to all of them.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/07-mass-reject-wizard.png" alt="Reject Product wizard applying one shared reason to multiple selected products" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background-color:#ffffff;">8</div>
+          <div>
+            <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background-color:#FBE7E7;color:#B23B3B;">Blocked</span>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Purchase Orders</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Trying to save a Request for Quotation with an unapproved product raises a clear Validation Error: only Approved products can be added to a purchase order.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/08-purchase-order-validation-error.png" alt="Unapproved product not selectable on a Purchase Order line" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background-color:#ffffff;">9</div>
+          <div>
+            <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background-color:#FBE7E7;color:#B23B3B;">Blocked</span>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Customer Invoices</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">The same protection applies to invoicing: trying to confirm a Customer Invoice with an unapproved product raises a Validation Error listing every unapproved line.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/09-invoice-validation-error.png" alt="Unapproved product not selectable on a Customer Invoice line" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background-color:#ffffff;">10</div>
+          <div>
+            <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background-color:#FBE7E7;color:#B23B3B;">Blocked</span>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Sales Quotations</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Sales is covered too: adding an unapproved product to a Quotation raises the same Validation Error before it can be sent or confirmed.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/10-sales-qutation-validation-error.png" alt="Validation Error blocking an unapproved product from being added to a Sales Quotation" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4" style="padding:36px 0;border-top:1px solid #DEDACB;">
+          <div class="d-flex align-items-center justify-content-center flex-shrink-0" style="width:56px;height:56px;border-radius:50%;border:2px solid #C24E4E;font-family:'Courier New',monospace;font-weight:600;font-size:17px;color:#B23B3B;background-color:#ffffff;">11</div>
+          <div>
+            <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:14px;background-color:#FBE7E7;color:#B23B3B;">Blocked</span>
+            <h3 style="font-family:Georgia,serif;font-size:22px;font-weight:600;line-height:1.3;margin:0 0 10px;">Blocked on Inventory Transfers</h3>
+            <p style="color:#5B6961;font-size:16px;line-height:1.7;margin:0 0 18px;">Trying to validate a receipt containing an unapproved product raises a clear Validation Error: only Approved products can be moved in Inventory.</p>
+            <div class="shadow-sm" style="border-radius:14px;overflow:hidden;border:1px solid #DEDACB;background-color:#ffffff;">
+              <div class="d-flex gap-2" style="padding:10px 14px;background-color:#F1EFE5;border-bottom:1px solid #DEDACB;"><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span><span style="width:9px;height:9px;border-radius:50%;background-color:#D8D3C2;display:inline-block;"></span></div>
+              <img src="screenshots/11-receipt-validation-error.png" alt="Validation Error blocking an unapproved product from being moved on an Inventory receipt" style="width:100%;display:block;">
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+  </section>
 
-    <!-- ============ Services ============ -->
-    <div id="services" style="background:#F7F5EE;padding:72px 0;">
-      <div class="section-wrap" style="max-width:1180px;margin:0 auto;padding:0 24px;">
-        <div style="text-align:center;max-width:760px;margin:0 auto 48px;">
-          <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;display:inline-flex;align-items:center;gap:10px;">
-            <span style="width:26px;height:1px;background:#93641A;display:inline-block;"></span>
-            Beyond the module
-          </span>
-          <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;"><span style="color:#1B6A50;font-style:italic;">Our</span> Services</h2>
-        </div>
+  <!-- ============ Services ============ -->
+  <section id="services" style="background-color:#F7F5EE;padding:72px 0;">
+    <div class="container" style="max-width:1180px;padding:0 24px;">
+      <div class="text-center" style="max-width:760px;margin:0 auto 48px;">
+        <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#93641A;">
+          <span style="width:26px;height:1px;background-color:#93641A;display:inline-block;"></span>
+          Beyond the module
+        </span>
+        <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#14231C;"><span style="color:#1B6A50;font-style:italic;">Our</span> Services</h2>
+      </div>
 
-        <div style="display:flex;flex-wrap:wrap;gap:18px;">
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/custom.png" style="width:24px;height:24px;display:block;"></div>
+      <div class="row g-3">
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/custom.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Implementation</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">End-to-end Odoo implementation to meet your business needs.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/implementation.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/implementation.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Customization</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Custom solutions tailored to your unique requirements.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/customer-service.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/customer-service.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Support &amp; Training</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Comprehensive support and training to enhance your Odoo usage.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/hired.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/hired.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Hire an Odoo Developer</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Get access to skilled Odoo developers for your project needs.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/technology.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/technology.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Integration</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Integrate Odoo seamlessly with third-party apps and systems.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/cloud-server.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/cloud-server.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Hosting &amp; Cloud</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Secure and scalable Odoo hosting solutions.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/schedule.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/schedule.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Maintenance</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Ensure smooth and uninterrupted operations.</p>
           </div>
-          <div class="card-service" style="flex:1 1 250px;background:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;">
-            <div style="width:46px;height:46px;border-radius:12px;background:rgba(207,233,219,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;"><img alt="" src="./images/consultant.png" style="width:24px;height:24px;display:block;"></div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div style="background-color:#ffffff;border:1px solid #DEDACB;border-radius:18px;padding:30px 24px;height:100%;">
+            <div class="d-flex align-items-center justify-content-center" style="width:46px;height:46px;border-radius:12px;background-color:#EAF3EC;margin-bottom:16px;"><img alt="" src="./images/consultant.png" style="width:24px;height:24px;display:block;"></div>
             <h4 style="font-family:Arial,sans-serif;font-size:16.5px;font-weight:700;margin:0 0 8px;">Odoo Consulting</h4>
             <p style="font-size:14px;color:#5B6961;line-height:1.6;margin:0;">Expert consulting to help you leverage Odoo for maximum efficiency.</p>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- ============ Support ============ -->
-    <div id="support" style="padding:0 24px 64px;">
-      <div class="support-panel" style="background:#0F3D2E;color:#ffffff;border-radius:26px;padding:56px 40px;max-width:1132px;margin:0 auto;">
-        <div style="max-width:1120px;margin:0 auto;">
-          <div style="text-align:center;max-width:760px;margin:0 auto 40px;">
-            <span style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#C98F2B;display:inline-flex;align-items:center;gap:10px;">
-              <span style="width:26px;height:1px;background:#C98F2B;display:inline-block;"></span>
-              We've got you
-            </span>
-            <h2 class="section-title" style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#ffffff;">Support &amp; Demo</h2>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:16px;">
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+  <!-- ============ Support ============ -->
+  <section id="support" style="padding:0 24px 64px;">
+    <div style="background-color:#0F3D2E;color:#ffffff;border-radius:26px;padding:56px 40px;max-width:1132px;margin:0 auto;">
+      <div class="container" style="max-width:1120px;">
+        <div class="text-center" style="max-width:760px;margin:0 auto 40px;">
+          <span class="d-inline-flex align-items-center gap-2" style="font-family:'Courier New',monospace;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#C98F2B;">
+            <span style="width:26px;height:1px;background-color:#C98F2B;display:inline-block;"></span>
+            We've got you
+          </span>
+          <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:600;line-height:1.2;margin:14px 0 0;color:#ffffff;">Support &amp; Demo</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-3 col-sm-6">
+            <div style="background-color:#14493A;border:1px solid #1C5A48;border-radius:16px;padding:26px 20px;height:100%;">
               <div style="font-size:20px;margin-bottom:14px;">&#128737;</div>
-              <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">90 days of free support included with every purchase</span>
+              <span style="font-size:14.5px;line-height:1.55;color:#E7EFEA;">90 days of free support included with every purchase</span>
             </div>
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div style="background-color:#14493A;border:1px solid #1C5A48;border-radius:16px;padding:26px 20px;height:100%;">
               <div style="font-size:20px;margin-bottom:14px;">&#127903;</div>
-              <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">Create a support ticket at <a href="https://people.infintor.com/contactus" target="_blank" style="color:#ffffff;text-decoration:underline;">people.infintor.com/contactus</a></span>
+              <span style="font-size:14.5px;line-height:1.55;color:#E7EFEA;">Create a support ticket at <a href="https://people.infintor.com/contactus" style="color:#ffffff;text-decoration:underline;">people.infintor.com/contactus</a></span>
             </div>
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div style="background-color:#14493A;border:1px solid #1C5A48;border-radius:16px;padding:26px 20px;height:100%;">
               <div style="font-size:20px;margin-bottom:14px;">&#9993;</div>
-              <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">Send an email to <a href="mailto:odoo@infintor.com" style="color:#ffffff;text-decoration:underline;">odoo@infintor.com</a></span>
+              <span style="font-size:14.5px;line-height:1.55;color:#E7EFEA;">Send an email to <a href="mailto:odoo@infintor.com" style="color:#ffffff;text-decoration:underline;">odoo@infintor.com</a></span>
             </div>
-            <div class="card-support" style="flex:1 1 220px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:26px 20px;">
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div style="background-color:#14493A;border:1px solid #1C5A48;border-radius:16px;padding:26px 20px;height:100%;">
               <div style="font-size:20px;margin-bottom:14px;">&#127760;</div>
-              <span style="font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);">Visit <a href="https://www.infintor.com" target="_blank" style="color:#ffffff;text-decoration:underline;">www.infintor.com</a></span>
+              <span style="font-size:14.5px;line-height:1.55;color:#E7EFEA;">Visit <a href="https://www.infintor.com" style="color:#ffffff;text-decoration:underline;">www.infintor.com</a></span>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div style="text-align:center;padding:40px 24px 56px;font-size:13px;color:#5B6961;font-family:'Courier New',monospace;">Product Approval Management for Odoo &mdash; by Infintor</div>
+  <div class="text-center" style="padding:40px 24px 56px;font-size:13px;color:#5B6961;font-family:'Courier New',monospace;">Product Approval Management for Odoo &mdash; by Infintor</div>
 
-  </div>
 </div>
 </body>
 </html>
